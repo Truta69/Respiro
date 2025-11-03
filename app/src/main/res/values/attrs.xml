@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Seus "Apelidos" de Cores -->
+    <attr name="corFundoTela" format="color" />
+    <attr name="corFundoToolbar" format="color" />
+    <attr name="corFundoFloatingBtn" format="color" />
+    <attr name="corFundoCirculo" format="color" />
+
+    <!-- Apelido para a cor do texto (importante para o tema escuro) -->
+    <attr name="titleTextColor" format="color" />
+</resources>

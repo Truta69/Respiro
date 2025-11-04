@@ -1,6 +1,7 @@
 package com.mazanca.newrespiracao.ui;
 
 import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -11,7 +12,6 @@ import com.mazanca.newrespiracao.animation.AnimarTexto;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 import com.mazanca.newrespiracao.model.Respiracao;
 import com.mazanca.newrespiracao.model.RespiracaoRelaxamento;
-import com.mazanca.newrespiracao.util.AnimadorNulo;
 import com.mazanca.newrespiracao.util.Cumprimento;
 import com.mazanca.newrespiracao.util.GerenciadorDeThemas;
 
@@ -34,11 +34,11 @@ public class BemVindoActivity extends AppCompatActivity {
         binding = ActivityBemVindoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getCumprimento();
-        animadorDeBoasVindas = AnimarTexto.iniciarAnimacaoCumprimento(binding.txtSaudacao);
-        if(animadorDeBoasVindas==null){
-            animadorDeBoasVindas=new AnimadorNulo();
-        }
+        animarTextoCumprimento();
+        respirarBasica();
+    }
 
+    private void respirarBasica() {
         Respiracao exercicioEscolhido = new RespiracaoRelaxamento();
 
         binding.btnFloating.setOnClickListener(v -> {
@@ -49,6 +49,14 @@ public class BemVindoActivity extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
+    }
+
+    private void animarTextoCumprimento() {
+        animadorDeBoasVindas = AnimarTexto.iniciarAnimacaoCumprimento(binding.txtSaudacao);
+        if(animadorDeBoasVindas==null){
+            animadorDeBoasVindas=new ValueAnimator();
+            animadorDeBoasVindas.setDuration(0);
+        }
     }
 
     @Override
@@ -75,5 +83,4 @@ public class BemVindoActivity extends AppCompatActivity {
         String resposta = Cumprimento.retornarCumprimento();
         binding.txtSaudacao.setText(resposta);
     }
-
 }

@@ -11,6 +11,7 @@ import com.mazanca.newrespiracao.animation.AnimarTexto;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 import com.mazanca.newrespiracao.model.Respiracao;
 import com.mazanca.newrespiracao.model.RespiracaoRelaxamento;
+import com.mazanca.newrespiracao.util.AnimadorNulo;
 import com.mazanca.newrespiracao.util.Cumprimento;
 import com.mazanca.newrespiracao.util.GerenciadorDeThemas;
 
@@ -34,6 +35,9 @@ public class BemVindoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getCumprimento();
         animadorDeBoasVindas = AnimarTexto.iniciarAnimacaoCumprimento(binding.txtSaudacao);
+        if(animadorDeBoasVindas=null){
+            animadorDeBoasVindas=new AnimadorNulo();
+        }
 
         Respiracao exercicioEscolhido = new RespiracaoRelaxamento();
 

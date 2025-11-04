@@ -35,7 +35,7 @@ public class BemVindoActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         getCumprimento();
         animadorDeBoasVindas = AnimarTexto.iniciarAnimacaoCumprimento(binding.txtSaudacao);
-        if(animadorDeBoasVindas=null){
+        if(animadorDeBoasVindas==null){
             animadorDeBoasVindas=new AnimadorNulo();
         }
 

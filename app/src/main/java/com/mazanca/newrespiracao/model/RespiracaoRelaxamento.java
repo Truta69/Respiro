@@ -8,7 +8,7 @@ public class RespiracaoRelaxamento implements Respiracao{
 
     @Override
     public int getNumeroDeCiclos() {
-        return 10;
+        return 4;
     }
 
     @Override

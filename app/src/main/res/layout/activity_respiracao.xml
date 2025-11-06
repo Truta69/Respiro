@@ -32,6 +32,7 @@
         android:id="@+id/txt_instrucao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/txt_instrucao"
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -40,5 +41,25 @@
         app:layout_constraintStart_toStartOf="@+id/circulo_animado"
         app:layout_constraintTop_toTopOf="@+id/circulo_animado"
         tools:text="Inspire..." />
+
+    <Button
+        android:id="@+id/btn_iniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_reiniciar"
+        android:text="@string/str_iniciar"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0"/>
+
+    <Button
+        android:id="@+id/btn_reiniciar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_reiniciar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_iniciar"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

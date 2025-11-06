@@ -20,8 +20,8 @@ public class AnimarBalao {
         // scaleX e scaleY de forma limpa e conjunta.
         ObjectAnimator objetoInflar=ObjectAnimator.ofPropertyValuesHolder(
                 circulo,
-                PropertyValuesHolder.ofFloat(View.SCALE_X,1.5F),
-                PropertyValuesHolder.ofFloat(View.SCALE_Y,1.5F)
+                PropertyValuesHolder.ofFloat(View.SCALE_X,3F),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y,3F)
         );
         objetoInflar.setDuration(duracaoDaFase);
         objetoInflar.setInterpolator(new AccelerateDecelerateInterpolator());

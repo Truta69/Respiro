@@ -26,6 +26,11 @@ public class BemVindoActivity extends AppCompatActivity {
     //tambem em build gradle
     private Animator animadorDeBoasVindas; // Variável de membro para o animador
     private boolean animacaoDeBoasVindasJaIniciou = false;
+    private Respiracao exercicioEscolhido;
+
+    public static  final String CHAVE_NOME_EXERCICIO="NOME_EXERCICIO";
+    public static  final String CHAVE_TEMPO_EXERCICIO="TEMPO_EXERCICIO";
+    public static  final String CHAVE_NUM_CICLOS_EXE="NUMERO_CICLOS_EXE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +44,12 @@ public class BemVindoActivity extends AppCompatActivity {
     }
 
     private void respirarBasica() {
-        Respiracao exercicioEscolhido = new RespiracaoRelaxamento();
-
+            exercicioEscolhido= new RespiracaoRelaxamento();
         binding.btnFloating.setOnClickListener(v -> {
             Intent intent = new Intent(BemVindoActivity.this, RespiracaoActivity.class);
-            intent.putExtra("TEMPO_FASE", exercicioEscolhido.getTempoFase());
-            intent.putExtra("NUMERO_CICLOS", exercicioEscolhido.getNumeroDeCiclos());
-            intent.putExtra("NOME_EXERCICIO", exercicioEscolhido.getNomeRespiracao());
+            intent.putExtra(CHAVE_NOME_EXERCICIO, exercicioEscolhido.getNomeRespiracao());
+            intent.putExtra(CHAVE_TEMPO_EXERCICIO, exercicioEscolhido.getTempoFase());
+            intent.putExtra(CHAVE_NUM_CICLOS_EXE, exercicioEscolhido.getNumeroDeCiclos());
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         });
@@ -57,6 +61,10 @@ public class BemVindoActivity extends AppCompatActivity {
             animadorDeBoasVindas=new ValueAnimator();
             animadorDeBoasVindas.setDuration(0);
         }
+    }
+    private void getCumprimento() {
+        String resposta = Cumprimento.retornarCumprimento();
+        binding.txtSaudacao.setText(resposta);
     }
 
     @Override
@@ -77,10 +85,14 @@ public class BemVindoActivity extends AppCompatActivity {
         if (animadorDeBoasVindas != null && animadorDeBoasVindas.isStarted()) {
             animadorDeBoasVindas.cancel();
         }
+        //resentando aview
+        binding.txtSaudacao.setScaleX(1.0f);
+        binding.txtSaudacao.setScaleY(1.0f);
     }
 
-    private void getCumprimento() {
-        String resposta = Cumprimento.retornarCumprimento();
-        binding.txtSaudacao.setText(resposta);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding=null;
     }
 }

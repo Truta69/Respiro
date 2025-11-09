@@ -11,6 +11,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
+import com.mazanca.newrespiracao.R;
+import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
+
 public class AnimarBalao {
 
     public static AnimatorSet criarCicloDeRespiracao(View circulo,TextView txtInstrucao,int tempoFase){

@@ -23,7 +23,7 @@
     <!-- Toolbar (Um laranja mais forte, como o sol no horizonte) -->
     <color name="tarde_toolbar">#FFB74D</color>
     <!-- FAB (Um vermelho/coral, cor do céu no fim da tarde) -->
-    <color name="tarde_floating_btn">#FF8A65</color>
+    <color name="tarde_floating_btn">#000000</color>
     <!-- Círculo de Respiração (Um âmbar/mel, cor quente) -->
     <color name="tarde_circulo">#FFCA28</color>
     <!-- ====================================================== -->
@@ -31,11 +31,11 @@
     <!-- (Base: Azul, passando a sensação de céu noturno e tranquilidade) -->
     <!-- ====================================================== -->
     <!-- Fundo da tela (Azul escuro, mas não preto) -->
-    <color name="noite_fundo">#C1FCFF</color>  <!-- Indigo Dark -->
+    <color name="noite_fundo">#ffffff</color>  <!-- Indigo Dark -->
     <!-- Toolbar (Um azul um pouco mais claro que o fundo, para dar profundidade) -->
-    <color name="noite_toolbar">#3F51B5</color>     <!-- Indigo -->
+    <color name="noite_toolbar">#000000</color>     <!-- Indigo -->
     <!-- FAB (Um roxo/lilás, cor da noite) -->
-    <color name="noite_floating_btn">#9575CD</color>         <!-- Deep Purple Light -->
+    <color name="noite_floating_btn">#000000</color>         <!-- Deep Purple Light -->
     <!-- Círculo de Respiração (Seu "azul claro", como a lua ou uma estrela brilhante) -->
-    <color name="noite_circulo">#3F51B5</color>      <!-- Indigo Light/Moon -->
+    <color name="noite_circulo">#000000</color>      <!-- Indigo Light/Moon -->
 </resources>

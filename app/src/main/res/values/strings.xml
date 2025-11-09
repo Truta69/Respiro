@@ -5,4 +5,7 @@
     <string name="str_iniciar">Iniciar</string>
     <string name="str_reiniciar">Reiniciar</string>
     <string name="txt_instrucao">Vamos lá</string>
+    <string name="inspirar_instrucao">Inspire</string>
+    <string name="expirar_instrucao">Expire</string>
+    <string name="vamos_la_instrucao">Vamos lá</string>
 </resources>

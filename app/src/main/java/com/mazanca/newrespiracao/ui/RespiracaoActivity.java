@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.animation.AnimarBalao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
+import com.mazanca.newrespiracao.util.Constantes;
+import com.mazanca.newrespiracao.util.GerarTelaUtil;
 import com.mazanca.newrespiracao.util.GerenciadorDeThemas;
 
 import java.util.Locale;
@@ -27,7 +29,8 @@ public class RespiracaoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        gerarTela(savedInstanceState);
+        super.onCreate(savedInstanceState);
+        binding = GerarTelaUtil.configurarTelaRespiracao(this);
         int tempoFase = receberParametros();
         binding.toolbarRetornar.setNavigationOnClickListener(v -> finish());
 
@@ -64,7 +67,6 @@ public class RespiracaoActivity extends AppCompatActivity {
             }
         };
         iniciarExercicio();
-        reiniciarExercicio();
     }
 
     private void iniciarExercicio() {
@@ -76,38 +78,14 @@ public class RespiracaoActivity extends AppCompatActivity {
             binding.txtInstrucao.setVisibility(View.VISIBLE);
         });
     }
-    private void reiniciarExercicio(){
-        binding.btnReiniciar.setOnClickListener(v -> {
-            //reseta tudo
-            if(contadorRegressivo!=null){
-                contadorRegressivo.cancel();
-            }if(animadorDoBalao!=null &&animadorDoBalao.isStarted()){
-                animadorDoBalao.cancel();
-            }
-            binding.toolbarRetornar.setSubtitle(null);
-            binding.txtInstrucao.setText("Vamos lá");
-            binding.circuloAnimado.setScaleX(1f); // Reseta o tamanho do círculo
-            binding.circuloAnimado.setScaleY(1f);
-            binding.btnIniciar.setEnabled(true);
-            binding.btnReiniciar.setEnabled(false);
-            cicloAtual=0;
-        });
-    }
 
     private int receberParametros() {
         Intent intent = getIntent();
-        int tempoFase = intent.getIntExtra(BemVindoActivity.CHAVE_NOME_EXERCICIO, 4);
-        ciclosTotais = intent.getIntExtra(BemVindoActivity.CHAVE_NUM_CICLOS_EXE, 12);
-        String nomeExercicio = intent.getStringExtra(BemVindoActivity.CHAVE_NOME_EXERCICIO);
+        int tempoFase = intent.getIntExtra(Constantes.TEMPO_SEGUNDOS, 4);
+        ciclosTotais = intent.getIntExtra(Constantes.NUM_CICLOS, 12);
+        String nomeExercicio = intent.getStringExtra(Constantes.NOME_EXERCICIO);
         binding.toolbarRetornar.setTitle(nomeExercicio);
         return tempoFase;
-    }
-
-    private void gerarTela(Bundle savedInstanceState) {
-        setTheme(GerenciadorDeThemas.getThema());
-        super.onCreate(savedInstanceState);
-        binding = ActivityRespiracaoBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
     }
 
     private void finalizarSessao() {

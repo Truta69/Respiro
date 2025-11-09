@@ -11,7 +11,9 @@
         android:id="@+id/toolbar_retornar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/corFundoToolbar"
+        android:background="@color/black"
+        app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_instrucao"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/circulo_animado"
@@ -42,24 +44,19 @@
         app:layout_constraintTop_toTopOf="@+id/circulo_animado"
         tools:text="Inspire..." />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_iniciar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_reiniciar"
         android:text="@string/str_iniciar"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <Button
-        android:id="@+id/btn_reiniciar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_reiniciar"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/noite_floating_btn"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_iniciar"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

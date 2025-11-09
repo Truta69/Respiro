@@ -3,7 +3,7 @@ package com.mazanca.newrespiracao.model;
 public class RespiracaoRelaxamento implements Respiracao{
     @Override
     public String getNomeRespiracao() {
-        return "Respiracao Equilibrada";
+        return "Respiracao Relaxante";
     }
 
     @Override
@@ -13,6 +13,6 @@ public class RespiracaoRelaxamento implements Respiracao{
 
     @Override
     public int getTempoFase() {
-        return 4;
+        return 6;
     }
 }

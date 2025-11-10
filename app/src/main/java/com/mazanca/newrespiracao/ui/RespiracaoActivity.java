@@ -13,9 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.animation.AnimarBalao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
-import com.mazanca.newrespiracao.util.Constantes;
 import com.mazanca.newrespiracao.util.GerarTelaUtil;
-import com.mazanca.newrespiracao.util.GerenciadorDeThemas;
+import com.mazanca.newrespiracao.util.ValoresConstantes;
 
 import java.util.Locale;
 
@@ -26,31 +25,26 @@ public class RespiracaoActivity extends AppCompatActivity {
     // Variáveis que a "maestra" usa para controlar a orquestra
     private int ciclosTotais;
     private int cicloAtual = 0;
+    private int tempoInspirar;
+    private int tempoExpirar;
+    private int tempoPausa;
+    private String nomeExercicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTelaRespiracao(this);
-        int tempoFase = receberParametros();
         binding.toolbarRetornar.setNavigationOnClickListener(v -> finish());
-
-        long duracaoTotal = tempoFase * 2 * ciclosTotais;
-
-        animadorDoBalao = AnimarBalao.criarCicloDeRespiracao(binding.circuloAnimado, binding.txtInstrucao, tempoFase);
-        // 3. ADICIONA O CONTADOR DE CICLOS (A LÓGICA PRINCIPAL)
-        animadorDoBalao.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                cicloAtual++;
-                if (cicloAtual < ciclosTotais) {
-                    animadorDoBalao.start();
-                } else {
-                    finalizarSessao();
-                }
-            }
-        });
+        receberParametros();
+     
+        long duracaoTotal = (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
+        prepararAnimacao();
         //prepara contador
+        prepararContador(duracaoTotal);
+        configurarBtniniciar();
+    }
+
+    private void prepararContador(long duracaoTotal) {
         contadorRegressivo = new CountDownTimer(duracaoTotal * 1000, 1000) {
             @Override
             public void onTick(long millisAteOFim) {
@@ -66,10 +60,31 @@ public class RespiracaoActivity extends AppCompatActivity {
             public void onFinish() {
             }
         };
-        iniciarExercicio();
     }
 
-    private void iniciarExercicio() {
+    private void prepararAnimacao() {
+        animadorDoBalao = AnimarBalao.criarCicloDeRespiracao(
+                binding.circuloAnimado,
+                binding.txtInstrucao,
+                tempoInspirar,
+                tempoExpirar,
+                tempoPausa);
+        // 3. ADICIONA O CONTADOR DE CICLOS (A LÓGICA PRINCIPAL)
+        animadorDoBalao.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                cicloAtual++;
+                if (cicloAtual < ciclosTotais) {
+                    animadorDoBalao.start();
+                } else {
+                    finalizarSessao();
+                }
+            }
+        });
+    }
+
+    private void configurarBtniniciar() {
         binding.btnIniciar.setOnClickListener(v -> {
             animadorDoBalao.start();
             contadorRegressivo.start();
@@ -79,13 +94,14 @@ public class RespiracaoActivity extends AppCompatActivity {
         });
     }
 
-    private int receberParametros() {
+    private void receberParametros() {
         Intent intent = getIntent();
-        int tempoFase = intent.getIntExtra(Constantes.TEMPO_SEGUNDOS, 4);
-        ciclosTotais = intent.getIntExtra(Constantes.NUM_CICLOS, 12);
-        String nomeExercicio = intent.getStringExtra(Constantes.NOME_EXERCICIO);
+        this.nomeExercicio = intent.getStringExtra(ValoresConstantes.EXTRA_NOME_EXERCICIO);
+        this.tempoExpirar = intent.getIntExtra(ValoresConstantes.EXTRA_TEMPO_EXPIRAR, 4);
+        this.tempoInspirar = intent.getIntExtra(ValoresConstantes.EXTRA_TEMPO_INSPIRAR, 4);
+        this.ciclosTotais = intent.getIntExtra(ValoresConstantes.EXTRA_NUM_CICLOS, 4);
+        this.tempoPausa = intent.getIntExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA, 0);
         binding.toolbarRetornar.setTitle(nomeExercicio);
-        return tempoFase;
     }
 
     private void finalizarSessao() {

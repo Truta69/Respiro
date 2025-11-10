@@ -16,8 +16,12 @@ import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 
 public class AnimarBalao {
 
-    public static AnimatorSet criarCicloDeRespiracao(View circulo,TextView txtInstrucao,int tempoFase){
-        long duracaoDaFase = tempoFase * 1000L;
+    public static AnimatorSet criarCicloDeRespiracao(
+                View circulo,TextView txtInstrucao,
+                 int tempoInspirar,int tempoExpirar,int tempoPausa){
+        long inspirar = tempoInspirar * 1000L;
+        long expirar = tempoExpirar * 1000L;
+        long pausar = tempoPausa * 1000L;
         // --- PREPARA A ANIMAÇÃO DE INSPIRAÇÃO (CRESCER) ---
         // Usamos PropertyValuesHolder para animar
         // scaleX e scaleY de forma limpa e conjunta.
@@ -26,7 +30,7 @@ public class AnimarBalao {
                 PropertyValuesHolder.ofFloat(View.SCALE_X,3F),
                 PropertyValuesHolder.ofFloat(View.SCALE_Y,3F)
         );
-        objetoInflar.setDuration(duracaoDaFase);
+        objetoInflar.setDuration(inspirar);
         objetoInflar.setInterpolator(new AccelerateDecelerateInterpolator());
         // Define o texto "Inspire" exatamente quando a fase de inflar começa
         objetoInflar.addListener(new AnimatorListenerAdapter() {
@@ -35,13 +39,28 @@ public class AnimarBalao {
                 txtInstrucao.setText("Inspire...");
             }
         });
+        //prepara pausa
+        ObjectAnimator objetoPausar=ObjectAnimator.ofPropertyValuesHolder(
+                circulo,
+                PropertyValuesHolder.ofFloat(View.SCALE_X,3F),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y,3F)
+        );
+        objetoPausar.setDuration(pausar);
+        objetoPausar.setInterpolator(new AccelerateDecelerateInterpolator());
+        // Define o texto "pausa" exatamente quando a fase de desinflar começa
+        objetoPausar.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                txtInstrucao.setText("Pausa...");
+            }
+        });
         // --- PREPARA A ANIMAÇÃO DE EXPIRAÇÃO (DIMINUIR) ---
         ObjectAnimator objetoDesinflar=ObjectAnimator.ofPropertyValuesHolder(
                 circulo,
                 PropertyValuesHolder.ofFloat(View.SCALE_X,1F),
                 PropertyValuesHolder.ofFloat(View.SCALE_Y,1F)
         );
-        objetoDesinflar.setDuration(duracaoDaFase);
+        objetoDesinflar.setDuration(expirar);
         objetoDesinflar.setInterpolator(new AccelerateDecelerateInterpolator());
         // Define o texto "Expire" exatamente quando a fase de desinflar começa
         objetoDesinflar.addListener(new AnimatorListenerAdapter() {
@@ -51,36 +70,7 @@ public class AnimarBalao {
             }
         });
         AnimatorSet cicloUnico = new AnimatorSet();
-        cicloUnico.playSequentially(objetoInflar,objetoDesinflar);
+        cicloUnico.playSequentially(objetoInflar,objetoPausar,objetoDesinflar);
         return cicloUnico;
     }
-
-//    public static AnimatorSet iniciarAnimadorBalao(View balao, TextView txtCirculo, int tempoRecebido) {
-//        long duracaoInflar = tempoRecebido * 1000L;
-//
-//        ObjectAnimator animacaoX = ObjectAnimator.ofFloat(balao, "scaleX", 1F, 3F);
-//        ObjectAnimator animacaoY = ObjectAnimator.ofFloat(balao, "scaleY", 1F, 3F);
-//        animacaoX.setRepeatCount(ValueAnimator.INFINITE);
-//        animacaoX.setRepeatMode(ValueAnimator.REVERSE);
-//
-//        animacaoY.setRepeatCount(ValueAnimator.INFINITE);
-//        animacaoY.setRepeatMode(ValueAnimator.REVERSE);
-//
-//        AnimatorSet animaSet = new AnimatorSet();
-//        animaSet.playTogether(animacaoX, animacaoY);
-//        animaSet.setDuration(duracaoInflar);
-//
-//        final boolean[] estaCrescendo = {true};
-//        txtCirculo.setText("Inspire");
-//        animacaoX.addListener(new AnimatorListenerAdapter() {
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//                estaCrescendo[0] = !estaCrescendo[0];
-//                String novoTexto = estaCrescendo[0] ? "Inspire" : "Expire";
-//                txtCirculo.setText(novoTexto);
-//            }
-//        });
-//
-//        return animaSet;
-//    }
 }

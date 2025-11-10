@@ -44,32 +44,43 @@
         android:id="@+id/btn_relaxar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_default="spread"
-        android:text="Relaxar"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        app:backgroundTint="@color/noite_floating_btn"
-        android:layout_marginBottom="20dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/botao_relaxar"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        app:backgroundTint="@color/noite_floating_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_energizar"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_energizar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_default="spread"
-        android:text="Energizar"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        app:backgroundTint="@color/noite_floating_btn"
-        android:layout_marginBottom="24dp"
         android:layout_marginStart="12dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/botao_energia"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        app:backgroundTint="@color/noite_floating_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_relaxar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@id/btn_concentrar"
+        app:layout_constraintStart_toEndOf="@id/btn_relaxar" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_concentrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/botao_concentrar"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        app:backgroundTint="@color/noite_floating_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_energizar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

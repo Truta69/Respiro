@@ -1,24 +1,29 @@
 package com.mazanca.newrespiracao.model;
 
-public class RespiracaoEnergia implements Respirar{
+public class RelaxamentoProfundo implements Respirar{
+   private int tempoPausa=7;
+
+    public int getTempoPausa() {
+        return tempoPausa;
+    }
 
     @Override
     public String getNome() {
-        return "Respiração Energizante";
+        return "Relaxamento profundo";
     }
 
     @Override
     public int getTempoInspirar() {
-        return 2;
+        return 4;
     }
 
     @Override
     public int getTempoExpirar() {
-        return 2;
+        return 8;
     }
 
     @Override
     public int getNumeroDeCiclos() {
-        return 5;
+        return 4;
     }
 }

@@ -7,7 +7,7 @@
     <!-- (Base: Amarelo Clarinho, passando uma sensação de sol nascendo) -->
     <!-- ====================================================== -->
     <!-- Fundo da tela (Amarelo bem suave, quase um creme) -->
-    <color name="manha_fundo">#FFFEAD</color>
+    <color name="manha_fundo">#feff70</color>
     <!-- Toolbar (Um azul céu para contrastar com o amarelo) -->
     <color name="manha_toolbar">#81D4FA</color>
     <!-- FAB (Um verde folha, representando a natureza da manhã) -->
@@ -19,7 +19,7 @@
     <!-- (Base: Tom Alaranjado, passando a sensação do pôr do sol) -->
     <!-- ====================================================== -->
     <!-- Fundo da tela (Laranja bem claro, cor de pêssego) -->
-    <color name="tarde_fundo">#e4ffd1</color>
+    <color name="tarde_fundo">#fed271</color>
     <!-- Toolbar (Um laranja mais forte, como o sol no horizonte) -->
     <color name="tarde_toolbar">#FFB74D</color>
     <!-- FAB (Um vermelho/coral, cor do céu no fim da tarde) -->

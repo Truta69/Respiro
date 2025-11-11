@@ -20,10 +20,10 @@ public class GerenciadorTipoRespiracao {
         this.contexto = contexto;
         this.botao = botao;
         this.tipoRespiracao = tipoRespiracao;
-        configuracao();
+        configuracaoBotao();
     }
 
-    private void configuracao() {
+    private void configuracaoBotao() {
         botao.setOnClickListener(v -> iniciarSessao(tipoRespiracao));
     }
 

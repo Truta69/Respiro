@@ -28,7 +28,7 @@ public class BemVindoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = GerarTelaUtil.configurarTelaBemVindo(this);
+        binding = GerarTelaUtil.configurarTela(this,ActivityBemVindoBinding::inflate);
         exibirCumprimento();
         gerenciarTextoAnimacao = new GerenciarTextoAnimacao();
         gerenciarTextoAnimacao.iniciaAnimacaoTexto(binding.txtSaudacao);

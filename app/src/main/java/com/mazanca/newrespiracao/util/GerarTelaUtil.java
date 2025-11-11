@@ -1,21 +1,20 @@
 package com.mazanca.newrespiracao.util;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 
-import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
-import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
+import androidx.viewbinding.ViewBinding;
+
+import java.util.function.Function;
 
 public class GerarTelaUtil {
-    public static ActivityRespiracaoBinding configurarTelaRespiracao(Activity activityResp) {
-        activityResp.setTheme(GerenciadorDeThemas.getThema());
-        ActivityRespiracaoBinding binding=ActivityRespiracaoBinding.inflate(activityResp.getLayoutInflater());
-        activityResp.setContentView(binding.getRoot());
-        return binding;
-    }
-    public static ActivityBemVindoBinding configurarTelaBemVindo(Activity activityBem) {
-        activityBem.setTheme(GerenciadorDeThemas.getThema());
-        ActivityBemVindoBinding binding=ActivityBemVindoBinding.inflate(activityBem.getLayoutInflater());
-        activityBem.setContentView(binding.getRoot());
+
+    public static <E extends ViewBinding> E configurarTela(
+            Activity tela,
+            Function<LayoutInflater, E> inflater) {
+        tela.setTheme(GerenciadorDeThemas.getThema());
+        E binding = inflater.apply(tela.getLayoutInflater());
+        tela.setContentView(binding.getRoot());
         return binding;
     }
 }

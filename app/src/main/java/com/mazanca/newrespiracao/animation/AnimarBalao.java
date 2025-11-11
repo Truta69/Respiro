@@ -5,30 +5,27 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
-import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
-import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
-
 public class AnimarBalao {
+    private static final float ESCALA_MAX = 3F;
+    private static final float ESCALA_MIN = 1F;
 
     public static AnimatorSet criarCicloDeRespiracao(
-                View circulo,TextView txtInstrucao,
-                 int tempoInspirar,int tempoExpirar,int tempoPausa){
+            View circulo, TextView txtInstrucao,
+            int tempoInspirar, int tempoExpirar, int tempoPausa) {
         long inspirar = tempoInspirar * 1000L;
         long expirar = tempoExpirar * 1000L;
         long pausar = tempoPausa * 1000L;
         // --- PREPARA A ANIMAÇÃO DE INSPIRAÇÃO (CRESCER) ---
         // Usamos PropertyValuesHolder para animar
         // scaleX e scaleY de forma limpa e conjunta.
-        ObjectAnimator objetoInflar=ObjectAnimator.ofPropertyValuesHolder(
+        ObjectAnimator objetoInflar = ObjectAnimator.ofPropertyValuesHolder(
                 circulo,
-                PropertyValuesHolder.ofFloat(View.SCALE_X,3F),
-                PropertyValuesHolder.ofFloat(View.SCALE_Y,3F)
+                PropertyValuesHolder.ofFloat(View.SCALE_X, ESCALA_MAX),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, ESCALA_MAX)
         );
         objetoInflar.setDuration(inspirar);
         objetoInflar.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -40,10 +37,10 @@ public class AnimarBalao {
             }
         });
         //prepara pausa
-        ObjectAnimator objetoPausar=ObjectAnimator.ofPropertyValuesHolder(
+        ObjectAnimator objetoPausar = ObjectAnimator.ofPropertyValuesHolder(
                 circulo,
-                PropertyValuesHolder.ofFloat(View.SCALE_X,3F),
-                PropertyValuesHolder.ofFloat(View.SCALE_Y,3F)
+                PropertyValuesHolder.ofFloat(View.SCALE_X, ESCALA_MAX),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, ESCALA_MAX)
         );
         objetoPausar.setDuration(pausar);
         objetoPausar.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -55,10 +52,10 @@ public class AnimarBalao {
             }
         });
         // --- PREPARA A ANIMAÇÃO DE EXPIRAÇÃO (DIMINUIR) ---
-        ObjectAnimator objetoDesinflar=ObjectAnimator.ofPropertyValuesHolder(
+        ObjectAnimator objetoDesinflar = ObjectAnimator.ofPropertyValuesHolder(
                 circulo,
-                PropertyValuesHolder.ofFloat(View.SCALE_X,1F),
-                PropertyValuesHolder.ofFloat(View.SCALE_Y,1F)
+                PropertyValuesHolder.ofFloat(View.SCALE_X, ESCALA_MIN),
+                PropertyValuesHolder.ofFloat(View.SCALE_Y, ESCALA_MIN)
         );
         objetoDesinflar.setDuration(expirar);
         objetoDesinflar.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -70,7 +67,7 @@ public class AnimarBalao {
             }
         });
         AnimatorSet cicloUnico = new AnimatorSet();
-        cicloUnico.playSequentially(objetoInflar,objetoPausar,objetoDesinflar);
+        cicloUnico.playSequentially(objetoInflar, objetoPausar, objetoDesinflar);
         return cicloUnico;
     }
 }

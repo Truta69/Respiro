@@ -9,13 +9,20 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
+import com.mazanca.newrespiracao.R;
+import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+
 public class AnimarBalao {
     private static final float ESCALA_MAX = 3F;
     private static final float ESCALA_MIN = 1F;
 
     public static AnimatorSet criarCicloDeRespiracao(
-            View circulo, TextView txtInstrucao,
-            int tempoInspirar, int tempoExpirar, int tempoPausa) {
+            View circulo,
+            TextView txtInstrucao,
+            int tempoInspirar,
+            int tempoExpirar,
+            int tempoPausa,
+            NarradorRespiracao narrador) {//para falar
         long inspirar = tempoInspirar * 1000L;
         long expirar = tempoExpirar * 1000L;
         long pausar = tempoPausa * 1000L;
@@ -33,7 +40,8 @@ public class AnimarBalao {
         objetoInflar.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                txtInstrucao.setText("Inspire...");
+                txtInstrucao.setText(R.string.inspirar_instrucao);
+                narrador.falar(txtInstrucao.getContext().getString(R.string.inspirar_instrucao));
             }
         });
         //prepara pausa
@@ -48,7 +56,8 @@ public class AnimarBalao {
         objetoPausar.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                txtInstrucao.setText("Pausa...");
+                txtInstrucao.setText(R.string.segure_instrucao);
+                narrador.falar(txtInstrucao.getContext().getString(R.string.segure_instrucao));
             }
         });
         // --- PREPARA A ANIMAÇÃO DE EXPIRAÇÃO (DIMINUIR) ---
@@ -57,13 +66,15 @@ public class AnimarBalao {
                 PropertyValuesHolder.ofFloat(View.SCALE_X, ESCALA_MIN),
                 PropertyValuesHolder.ofFloat(View.SCALE_Y, ESCALA_MIN)
         );
+
         objetoDesinflar.setDuration(expirar);
         objetoDesinflar.setInterpolator(new AccelerateDecelerateInterpolator());
         // Define o texto "Expire" exatamente quando a fase de desinflar começa
         objetoDesinflar.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
-                txtInstrucao.setText("Expire...");
+                txtInstrucao.setText(R.string.expirar_instrucao);
+                narrador.falar(txtInstrucao.getContext().getString(R.string.expirar_instrucao));
             }
         });
         AnimatorSet cicloUnico = new AnimatorSet();

@@ -1,6 +1,9 @@
 package com.mazanca.newrespiracao.ui;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,13 +18,7 @@ import com.mazanca.newrespiracao.util.GerarTelaUtil;
 
 public class BemVindoActivity extends AppCompatActivity {
 
-    //refencia pra todas views
-    //adicionada imports em build.gradle app viewbinding
-    //ai pega referencia das views no lugar de r.id
     private ActivityBemVindoBinding binding;
-    //aquela problema de versoes od agp e do sdk
-    //ewsolvido com *** implementation("androidx.activity:activity:1.9.0")**
-    //tambem em build gradle
 
     private GerenciarTextoAnimacao gerenciarTextoAnimacao;
 
@@ -57,8 +54,8 @@ public class BemVindoActivity extends AppCompatActivity {
         super.onPause();
         gerenciarTextoAnimacao.pausar();
         //resentando aview
-        binding.txtSaudacao.setScaleX(1.0f);
-        binding.txtSaudacao.setScaleY(1.0f);
+        binding.txtSaudacao.setScaleX(1f);
+        binding.txtSaudacao.setScaleY(1f);
     }
 
     @Override

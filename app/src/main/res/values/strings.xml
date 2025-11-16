@@ -4,11 +4,12 @@
     <string name="sub_titulo">Pausas para sua mente</string>
     <string name="str_iniciar">Iniciar</string>
     <string name="botao_relaxar">Relaxar</string>
-    <string name="botao_energia">Energizar</string>
-    <string name="botao_concentrar">Concentrar</string>
+    <string name="botao_energia">Energia</string>
+    <string name="botao_concentrar">Foco</string>
     <string name="txt_instrucao">Vamos lá</string>
     <string name="inspirar_instrucao">Inspire</string>
     <string name="expirar_instrucao">Expire</string>
+    <string name="segure_instrucao">Segure..</string>
     <string name="vamos_la_instrucao">Vamos lá</string>
     <string name="sessao_finalizada">Acabou..</string>
 </resources>

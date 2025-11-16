@@ -1,0 +1,3 @@
+ super.onCreate(savedInstanceState);
+para o android iniciar a activity chamando o oncreate da classe pai(AppCompatActivity);
+o parametro, e usado para recriar activity(rotacinou a tela,troca de idioma..);

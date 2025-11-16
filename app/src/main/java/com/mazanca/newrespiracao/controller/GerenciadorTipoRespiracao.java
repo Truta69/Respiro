@@ -1,10 +1,12 @@
 package com.mazanca.newrespiracao.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
 import com.mazanca.newrespiracao.R;
+import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
 import com.mazanca.newrespiracao.model.Respirar;
 import com.mazanca.newrespiracao.ui.BemVindoActivity;
 import com.mazanca.newrespiracao.ui.RespiracaoActivity;
@@ -15,6 +17,7 @@ public class GerenciadorTipoRespiracao {
     private View botao;
     //private Respiracao tipoRespiracao;
     private Respirar tipoRespiracao;
+    private RelaxamentoProfundo relaxamentoProfundo;
 
     public GerenciadorTipoRespiracao(Context contexto, View botao, Respirar tipoRespiracao) {
         this.contexto = contexto;
@@ -33,12 +36,9 @@ public class GerenciadorTipoRespiracao {
         intent.putExtra(ValoresConstantes.EXTRA_TEMPO_EXPIRAR, tipoRespiracao.getTempoExpirar());
         intent.putExtra(ValoresConstantes.EXTRA_TEMPO_INSPIRAR, tipoRespiracao.getTempoInspirar());
         intent.putExtra(ValoresConstantes.EXTRA_NUM_CICLOS, tipoRespiracao.getNumeroDeCiclos());
-        try {
-            int pausa = (int) tipoRespiracao.getClass().getMethod("getTempoPausa").invoke(tipoRespiracao);
-            intent.putExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA, pausa);
-        } catch (Exception e) {
-            intent.putExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA, 0);
-        }
+        intent.putExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA,tipoRespiracao.getTempoPausa());
+
+
         contexto.startActivity(intent);
         if (contexto instanceof BemVindoActivity) {
             ((BemVindoActivity) contexto).overridePendingTransition(

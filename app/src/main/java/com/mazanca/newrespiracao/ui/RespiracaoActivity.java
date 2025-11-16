@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
+import com.mazanca.newrespiracao.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.controller.GerenciarSessaoRespiracao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 import com.mazanca.newrespiracao.util.GerarTelaUtil;
@@ -14,11 +15,13 @@ import com.mazanca.newrespiracao.util.ValoresConstantes;
 public class RespiracaoActivity extends AppCompatActivity {
     private ActivityRespiracaoBinding binding;
     private GerenciarSessaoRespiracao gerenciarSessao;
+    private NarradorRespiracao narrador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = GerarTelaUtil.configurarTela(this,ActivityRespiracaoBinding::inflate);
+        binding = GerarTelaUtil.configurarTela(this, ActivityRespiracaoBinding::inflate);
+        narrador = new NarradorRespiracao(this);//para falar
         // 1. Recebe os parâmetros da Intent
         Intent intent = getIntent();
         String nomeExercicio = intent.getStringExtra(ValoresConstantes.EXTRA_NOME_EXERCICIO);
@@ -28,7 +31,7 @@ public class RespiracaoActivity extends AppCompatActivity {
         int tempoPausa = intent.getIntExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA, 0);
         configurarToolbar(nomeExercicio);
         gerenciarSessao = new GerenciarSessaoRespiracao(
-                binding, ciclosTotais, tempoInspirar, tempoExpirar, tempoPausa);
+                binding, ciclosTotais, tempoInspirar, tempoExpirar, tempoPausa, narrador);
         gerenciarSessao.prepararComponentes();
         configurarBtnIniciar();
     }
@@ -49,6 +52,9 @@ public class RespiracaoActivity extends AppCompatActivity {
         super.onDestroy();
         if (gerenciarSessao != null) {
             gerenciarSessao.liberarRecursos();//delega p gerenciador
+        }
+        if (narrador !=null){
+            narrador.parar();
         }
     }
 

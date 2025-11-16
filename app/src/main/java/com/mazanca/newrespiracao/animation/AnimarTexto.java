@@ -7,7 +7,7 @@ import android.view.View;
 
 public class AnimarTexto {
     public static AnimatorSet iniciarAnimacaoCumprimento(View texto) {
-        ObjectAnimator animacaoX = ObjectAnimator.ofFloat(texto, "scaleX", 1F, 2.5F);
+        ObjectAnimator animacaoX = ObjectAnimator.ofFloat(texto, "scaleX", 1F, 2.3F);
         ObjectAnimator animacaoY = ObjectAnimator.ofFloat(texto, "scaleY", 1F, 1.5F);
         animacaoX.setRepeatCount(1);
         animacaoX.setRepeatMode(ValueAnimator.REVERSE);
@@ -17,7 +17,7 @@ public class AnimarTexto {
 
         AnimatorSet animaSet = new AnimatorSet();
         animaSet.playTogether(animacaoX, animacaoY);
-        animaSet.setDuration(4000);
+        animaSet.setDuration(2000);
         return animaSet;
     }
 }

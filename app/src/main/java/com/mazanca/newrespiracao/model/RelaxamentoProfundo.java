@@ -1,8 +1,9 @@
 package com.mazanca.newrespiracao.model;
 
-public class RelaxamentoProfundo implements Respirar{
-   private int tempoPausa=7;
+public class RelaxamentoProfundo implements Respirar {
+    private int tempoPausa = 7;
 
+    @Override//metodo default da interface
     public int getTempoPausa() {
         return tempoPausa;
     }

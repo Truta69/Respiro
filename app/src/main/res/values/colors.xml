@@ -1,41 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <!-- ====================================================== -->
-    <!--                     TEMA MANHÃ                       -->
-    <!-- (Base: Amarelo Clarinho, passando uma sensação de sol nascendo) -->
-    <!-- ====================================================== -->
-    <!-- Fundo da tela (Amarelo bem suave, quase um creme) -->
-    <color name="manha_fundo">#feff70</color>
-    <!-- Toolbar (Um azul céu para contrastar com o amarelo) -->
-    <color name="manha_toolbar">#81D4FA</color>
-    <!-- FAB (Um verde folha, representando a natureza da manhã) -->
-    <color name="manha_floating_btn">#A5D6A7</color>
-    <!-- Círculo de Respiração (Um amarelo mais vivo, como a gema do sol) -->
-    <color name="manha_circulo">#3F51B5</color>
-    <!-- ====================================================== -->
-    <!--                     TEMA TARDE                       -->
-    <!-- (Base: Tom Alaranjado, passando a sensação do pôr do sol) -->
-    <!-- ====================================================== -->
-    <!-- Fundo da tela (Laranja bem claro, cor de pêssego) -->
-    <color name="tarde_fundo">#fed271</color>
-    <!-- Toolbar (Um laranja mais forte, como o sol no horizonte) -->
-    <color name="tarde_toolbar">#FFB74D</color>
-    <!-- FAB (Um vermelho/coral, cor do céu no fim da tarde) -->
-    <color name="tarde_floating_btn">#000000</color>
-    <!-- Círculo de Respiração (Um âmbar/mel, cor quente) -->
-    <color name="tarde_circulo">#FFCA28</color>
-    <!-- ====================================================== -->
-    <!--                      TEMA NOITE                      -->
-    <!-- (Base: Azul, passando a sensação de céu noturno e tranquilidade) -->
-    <!-- ====================================================== -->
-    <!-- Fundo da tela (Azul escuro, mas não preto) -->
-    <color name="noite_fundo">#ffffff</color>  <!-- Indigo Dark -->
-    <!-- Toolbar (Um azul um pouco mais claro que o fundo, para dar profundidade) -->
-    <color name="noite_toolbar">#000000</color>     <!-- Indigo -->
-    <!-- FAB (Um roxo/lilás, cor da noite) -->
-    <color name="noite_floating_btn">#000000</color>         <!-- Deep Purple Light -->
-    <!-- Círculo de Respiração (Seu "azul claro", como a lua ou uma estrela brilhante) -->
-    <color name="noite_circulo">#000000</color>      <!-- Indigo Light/Moon -->
+
+    <color name="cor_fundo_tela_fixa">#FFFFFF</color>
+    <color name="cor_texto_fixa">#000000</color>
+    <color name="cor_padrao">#6200EE</color>
+    <color name="white">#ffffff</color>
+    <color name="corPrimariaManha">#FFF000</color>
+    <color name="corPrimariaTarde">#EDBA52</color>
+    <color name="corPrimariaNoite">#69E2FF</color>
 </resources>

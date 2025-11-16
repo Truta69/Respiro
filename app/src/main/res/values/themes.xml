@@ -1,31 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.NewRespiracao" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<resources>
+
+    <style name="Theme.NewRespiracao" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cor_padrao</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/cor_fundo_tela_fixa</item>
+        <item name="colorOnSurface">@color/cor_texto_fixa</item>
     </style>
 
-    <style name="Theme.NewRespiracao" parent="Base.Theme.NewRespiracao" />
-
-    <style name="Theme.NewRespiracao.Manha" parent="Base.Theme.NewRespiracao">
-        <item name="corFundoTela">@color/manha_fundo</item>
-        <item name="corFundoToolbar">@color/manha_toolbar</item>
-        <item name="corFundoFloatingBtn">@color/manha_floating_btn</item>
-        <item name="corFundoCirculo">@color/manha_circulo</item>
+    <style name="Theme.NewRespiracao.Manha" parent="Theme.NewRespiracao">
+        <item name="colorPrimary">@color/corPrimariaManha</item>
+        <item name="colorOnPrimary">@color/cor_texto_fixa</item>
     </style>
 
-    <style name="Theme.NewRespiracao.Tarde" parent="Base.Theme.NewRespiracao">
-        <item name="corFundoTela">@color/tarde_fundo</item>
-        <item name="corFundoToolbar">@color/tarde_toolbar</item>
-        <item name="corFundoFloatingBtn">@color/tarde_floating_btn</item>
-        <item name="corFundoCirculo">@color/tarde_circulo</item>
+    <style name="Theme.NewRespiracao.Tarde" parent="Theme.NewRespiracao">
+        <item name="colorPrimary">@color/corPrimariaTarde</item>
+        <item name="colorOnPrimary">@color/cor_texto_fixa</item>
     </style>
 
-    <style name="Theme.NewRespiracao.Noite" parent="Base.Theme.NewRespiracao">
-        <item name="corFundoTela">@color/noite_fundo</item>
-        <item name="corFundoToolbar">@color/noite_toolbar</item>
-        <item name="corFundoFloatingBtn">@color/noite_floating_btn</item>
-        <item name="corFundoCirculo">@color/noite_circulo</item>
+    <style name="Theme.NewRespiracao.Noite" parent="Theme.NewRespiracao">
+        <item name="colorPrimary">@color/corPrimariaNoite</item>
+        <item name="colorOnPrimary">@color/cor_texto_fixa</item>
     </style>
 
 </resources>

@@ -2,7 +2,10 @@ package com.mazanca.newrespiracao.util;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
+import android.view.Window;
 
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.viewbinding.ViewBinding;
 
 import java.util.function.Function;
@@ -14,7 +17,12 @@ public class GerarTelaUtil {
             Function<LayoutInflater, E> inflater) {
         tela.setTheme(GerenciadorDeThemas.getThema());
         E binding = inflater.apply(tela.getLayoutInflater());
+        configurarBarraDeStatus(tela.getWindow());
         tela.setContentView(binding.getRoot());
         return binding;
+    }
+    private static void configurarBarraDeStatus(Window window){
+        WindowInsetsControllerCompat insetsController= WindowCompat.getInsetsController(window,window.getDecorView());
+        insetsController.setAppearanceLightStatusBars(true);
     }
 }

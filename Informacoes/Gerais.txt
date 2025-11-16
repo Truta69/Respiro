@@ -1,0 +1,7 @@
+Ao gerar projeto dava aqule problema de incompatibilidade de agp...sdk..
+resolvido com imports de implementation("androidx.activity:activity:1.9.0") nas dependencias do app
+*********************************************************
+Referencia aos id atraves do viewBinding.
+Ele gera uma classe automatica. se a classe e activityMain, entao ele gera ActivityMainBinding binding;
+agora faz binding.botaoIniciar.setText("Vai!");em vez de findviewbyid r.id...
+**********************************************************

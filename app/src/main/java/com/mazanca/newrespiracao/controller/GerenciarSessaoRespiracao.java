@@ -9,7 +9,7 @@ import android.view.View;
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.animation.AnimarBalao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
-
+import com.mazanca.newrespiracao.audio.NarradorRespiracao;
 import java.util.Locale;
 
 public class GerenciarSessaoRespiracao {
@@ -24,18 +24,21 @@ public class GerenciarSessaoRespiracao {
 
     private int cicloAtual;
     private boolean exercicioEmAndamento = false;
+    private NarradorRespiracao narrador;
 
     public GerenciarSessaoRespiracao(
             ActivityRespiracaoBinding binding,
             int ciclosTotais,
             int tempoInspirar,
             int tempoExpirar,
-            int tempoPausa) {
+            int tempoPausa,
+            NarradorRespiracao narrador) {
         this.binding = binding;
         this.ciclosTotais = ciclosTotais;
         this.tempoInspirar = tempoInspirar;
         this.tempoExpirar = tempoExpirar;
         this.tempoPausa = tempoPausa;
+        this.narrador = narrador;
     }
 
     public void prepararComponentes() {
@@ -55,13 +58,15 @@ public class GerenciarSessaoRespiracao {
         binding.txtInstrucao.setVisibility(View.VISIBLE);
     }
 
+    //animatoset no lugar de animarbalao
     private void prepararAnimacao() {
         animadorBalao = AnimarBalao.criarCicloDeRespiracao(
                 binding.circuloAnimado,
                 binding.txtInstrucao,
                 tempoInspirar,
                 tempoExpirar,
-                tempoPausa
+                tempoPausa,
+                narrador
         );
         AnimatorListenerAdapter listenerCiclo = new AnimatorListenerAdapter() {
             @Override
@@ -79,7 +84,6 @@ public class GerenciarSessaoRespiracao {
             }
         };
         animadorBalao.addListener(listenerCiclo);
-
     }
 
     public void resetarParaEstadoInicial() {
@@ -90,7 +94,6 @@ public class GerenciarSessaoRespiracao {
         if (animadorBalao != null && animadorBalao.isStarted())
             animadorBalao.cancel();
         binding.toolbarRetornar.setSubtitle(null);
-        binding.txtInstrucao.setVisibility(View.INVISIBLE);//???
         binding.circuloAnimado.animate().cancel();
         binding.circuloAnimado.setScaleX(1f);
         binding.circuloAnimado.setScaleY(1f);

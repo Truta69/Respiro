@@ -28,6 +28,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
     }
     buildFeatures {
         viewBinding = true
@@ -35,10 +36,9 @@ android {
 }
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:1.18.32")
-    annotationProcessor ("org.projectlombok:lombok:1.18.32")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    implementation ("com.google.android.material:material:1.11.0")
     implementation(libs.appcompat)
-    implementation(libs.material)
     implementation("androidx.activity:activity:1.9.0")
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)

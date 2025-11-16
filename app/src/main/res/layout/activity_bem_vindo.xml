@@ -5,35 +5,44 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/corFundoTela"
+    android:background="?attr/colorSurface"
     tools:context=".ui.BemVindoActivity">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_titulo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titulo"
+        android:gravity="center"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="?attr/colorPrimary"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_sub_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sub_titulo"
+        android:gravity="center"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="?attr/colorPrimary"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_titulo" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_saudacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorPrimary"
+        android:background="@drawable/text_view_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,12 +53,13 @@
         android:id="@+id/btn_relaxar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="20dp"
         android:text="@string/botao_relaxar"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        app:backgroundTint="@color/noite_floating_btn"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeStepGranularity="1sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_energizar"
         app:layout_constraintHorizontal_chainStyle="spread"
@@ -59,28 +69,32 @@
         android:id="@+id/btn_energizar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/botao_energia"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        app:backgroundTint="@color/noite_floating_btn"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeStepGranularity="1sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_concentrar"
-        app:layout_constraintStart_toEndOf="@id/btn_relaxar" />
+        app:layout_constraintStart_toEndOf="@id/btn_relaxar"
+        app:layout_constraintHorizontal_chainStyle="spread"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_concentrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/botao_concentrar"
-        android:textColor="@android:color/white"
-        android:textSize="15sp"
-        app:backgroundTint="@color/noite_floating_btn"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="20sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeStepGranularity="1sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_energizar" />
+        app:layout_constraintStart_toEndOf="@id/btn_energizar"
+        app:layout_constraintHorizontal_chainStyle="spread"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

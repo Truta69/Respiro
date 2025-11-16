@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/corFundoTela">
+    android:background="?attr/colorSurface"
+    tools:context=".ui.RespiracaoActivity">
 
     <!--toolbar com seta voltar-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_retornar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/black"
-        app:titleTextColor="@color/white"
-        app:subtitleTextColor="@color/white"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,19 +23,20 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/shape_circulo"
-        android:backgroundTint="?attr/corFundoCirculo"
+        android:backgroundTint="?attr/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_instrucao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_instrucao"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textColor="?attr/colorOnPrimary"
+        android:background="?attr/colorPrimary"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/circulo_animado"
         app:layout_constraintEnd_toEndOf="@+id/circulo_animado"
@@ -49,14 +49,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/str_iniciar"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/noite_floating_btn"
         android:textSize="24sp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="1.0" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

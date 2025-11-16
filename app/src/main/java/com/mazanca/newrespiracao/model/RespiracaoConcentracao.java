@@ -1,10 +1,11 @@
 package com.mazanca.newrespiracao.model;
 
 public class RespiracaoConcentracao implements Respirar{
-    private int pausa=4;
+    private int tempoPausa =4;
 
-    public int getPausa() {
-        return pausa;
+    @Override//metodo defualt da interface vem como padrao
+    public int getTempoPausa() {
+        return tempoPausa;
     }
 
     @Override

@@ -1,5 +1,4 @@
 <resources>
-
     <color name="cor_fundo_tela_fixa">#FFFFFF</color>
     <color name="cor_texto_fixa">#000000</color>
     <color name="cor_padrao">#6200EE</color>
@@ -7,4 +6,10 @@
     <color name="corPrimariaManha">#FFF000</color>
     <color name="corPrimariaTarde">#EDBA52</color>
     <color name="corPrimariaNoite">#69E2FF</color>
+    <!-- Fundo e texto do modo noturno -->
+    <color name="cor_fundo_tela_fixa_noite">#121212</color>
+    <color name="cor_texto_fixa_noite">#FFFFFF</color>
+    <!-- Cor primária especial para o modo noturno -->
+    <color name="corPrimariaNoite_escuro">#BB86FC</color>
+    <color name="corPrimariaEscuro_BOTAO">#FFFFFF</color>
 </resources>

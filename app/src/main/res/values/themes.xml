@@ -22,4 +22,13 @@
         <item name="colorOnPrimary">@color/cor_texto_fixa</item>
     </style>
 
+    <style name="Theme.NewRespiracao.Noturno" parent="Theme.NewRespiracao">
+        <item name="colorSurface">@color/cor_fundo_tela_fixa_noite</item>
+        <item name="colorOnSurface">@color/cor_texto_fixa_noite</item>
+
+        <item name="colorPrimary">@color/corPrimariaNoite_escuro</item>
+        <item name="colorOnPrimary">@color/cor_texto_fixa_noite</item>
+
+    </style>
+
 </resources>

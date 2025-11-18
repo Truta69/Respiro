@@ -10,7 +10,7 @@ public class RespiracaoConcentracao implements Respirar{
 
     @Override
     public String getNome() {
-        return "Respiraçõa Box";
+        return "Respiração Box";
     }
 
     @Override

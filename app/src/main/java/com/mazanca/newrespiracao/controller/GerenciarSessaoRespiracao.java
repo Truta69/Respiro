@@ -8,8 +8,9 @@ import android.view.View;
 
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.animation.AnimarBalao;
-import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
+
 import java.util.Locale;
 
 public class GerenciarSessaoRespiracao {

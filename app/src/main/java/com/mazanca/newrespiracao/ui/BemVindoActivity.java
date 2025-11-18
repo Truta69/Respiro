@@ -1,12 +1,10 @@
 package com.mazanca.newrespiracao.ui;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.animation.GerenciarTextoAnimacao;
 import com.mazanca.newrespiracao.controller.GerenciadorTipoRespiracao;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
@@ -25,7 +23,7 @@ public class BemVindoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = GerarTelaUtil.configurarTela(this,ActivityBemVindoBinding::inflate);
+        binding = GerarTelaUtil.configurarTela(this, ActivityBemVindoBinding::inflate);
         exibirCumprimento();
         gerenciarTextoAnimacao = new GerenciarTextoAnimacao();
         gerenciarTextoAnimacao.iniciaAnimacaoTexto(binding.txtSaudacao);

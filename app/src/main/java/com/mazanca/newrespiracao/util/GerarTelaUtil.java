@@ -21,8 +21,10 @@ public class GerarTelaUtil {
         tela.setContentView(binding.getRoot());
         return binding;
     }
-    private static void configurarBarraDeStatus(Window window){
-        WindowInsetsControllerCompat insetsController= WindowCompat.getInsetsController(window,window.getDecorView());
-        insetsController.setAppearanceLightStatusBars(true);
+    //so executa se nao for null, assim evita nullpointer...
+    private static void configurarBarraDeStatus(Window window) {
+        WindowInsetsControllerCompat insetsController = WindowCompat.getInsetsController(window, window.getDecorView());
+        if (insetsController != null)
+            insetsController.setAppearanceLightStatusBars(true);
     }
 }

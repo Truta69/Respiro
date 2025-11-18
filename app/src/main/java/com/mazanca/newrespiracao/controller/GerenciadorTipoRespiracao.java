@@ -1,6 +1,5 @@
 package com.mazanca.newrespiracao.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -38,6 +37,9 @@ public class GerenciadorTipoRespiracao {
         intent.putExtra(ValoresConstantes.EXTRA_NUM_CICLOS, tipoRespiracao.getNumeroDeCiclos());
         intent.putExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA,tipoRespiracao.getTempoPausa());
 
+        if(!(contexto instanceof android.app.Activity)){
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        }
 
         contexto.startActivity(intent);
         if (contexto instanceof BemVindoActivity) {

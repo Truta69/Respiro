@@ -6,10 +6,10 @@ package com.mazanca.newrespiracao.model;
  */
 public interface Respirar {
     String getNome();
-    int getTempoInspirar();
-    int getTempoExpirar();
-    int getNumeroDeCiclos();
-    default int getTempoPausa(){
+    long getTempoInspirar();
+    long getTempoExpirar();
+    long getNumeroDeCiclos();
+    default long getTempoPausa(){
         return 0;
     }
 }

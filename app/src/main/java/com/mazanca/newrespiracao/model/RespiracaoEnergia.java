@@ -1,6 +1,6 @@
 package com.mazanca.newrespiracao.model;
 
-public class RespiracaoEnergia implements Respirar{
+public class RespiracaoEnergia implements Respirar {
 
     @Override
     public String getNome() {
@@ -8,17 +8,17 @@ public class RespiracaoEnergia implements Respirar{
     }
 
     @Override
-    public int getTempoInspirar() {
+    public long getTempoInspirar() {
         return 2;
     }
 
     @Override
-    public int getTempoExpirar() {
+    public long getTempoExpirar() {
         return 2;
     }
 
     @Override
-    public int getNumeroDeCiclos() {
+    public long getNumeroDeCiclos() {
         return 5;
     }
 }

@@ -1,10 +1,10 @@
 package com.mazanca.newrespiracao.model;
 
 public class RespiracaoConcentracao implements Respirar{
-    private int tempoPausa =4;
+    private long tempoPausa =4;
 
     @Override//metodo defualt da interface vem como padrao
-    public int getTempoPausa() {
+    public long getTempoPausa() {
         return tempoPausa;
     }
 
@@ -14,17 +14,17 @@ public class RespiracaoConcentracao implements Respirar{
     }
 
     @Override
-    public int getTempoInspirar() {
+    public long getTempoInspirar() {
         return 4;
     }
 
     @Override
-    public int getTempoExpirar() {
+    public long getTempoExpirar() {
         return 4;
     }
 
     @Override
-    public int getNumeroDeCiclos() {
+    public long getNumeroDeCiclos() {
         return 5;
     }
 }

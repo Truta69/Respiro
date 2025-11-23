@@ -1,6 +1,6 @@
 package com.mazanca.newrespiracao.util;
 
-public class ValoresConstantes {
+public class Constantes {
 
     public static final String EXTRA_NOME_EXERCICIO = "EXTRA_NOME_EXERCICIO";
     public static final String EXTRA_NUM_CICLOS = "EXTRA_NUM_CICLOS";

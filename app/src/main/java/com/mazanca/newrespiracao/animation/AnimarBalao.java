@@ -19,9 +19,9 @@ public class AnimarBalao {
     public static AnimatorSet criarCicloDeRespiracao(
             View circulo,
             TextView txtInstrucao,
-            int tempoInspirar,
-            int tempoExpirar,
-            int tempoPausa,
+           long tempoInspirar,
+           long tempoExpirar,
+           long tempoPausa,
             NarradorRespiracao narrador) {//para falar
         long inspirar = tempoInspirar * 1000L;
         long expirar = tempoExpirar * 1000L;
@@ -41,7 +41,7 @@ public class AnimarBalao {
             @Override
             public void onAnimationStart(Animator animation) {
                 txtInstrucao.setText(R.string.inspirar_instrucao);
-                narrador.falar(txtInstrucao.getContext().getString(R.string.inspirar_instrucao));
+                //narrador.falar(txtInstrucao.getContext().getString(R.string.txt_instrucao));
             }
         });
         //prepara pausa
@@ -57,7 +57,7 @@ public class AnimarBalao {
             @Override
             public void onAnimationStart(Animator animation) {
                 txtInstrucao.setText(R.string.segure_instrucao);
-                narrador.falar(txtInstrucao.getContext().getString(R.string.segure_instrucao));
+                //narrador.falar(txtInstrucao.getContext().getString(R.string.segure_instrucao));
             }
         });
         // --- PREPARA A ANIMAÇÃO DE EXPIRAÇÃO (DIMINUIR) ---
@@ -74,7 +74,7 @@ public class AnimarBalao {
             @Override
             public void onAnimationStart(Animator animation) {
                 txtInstrucao.setText(R.string.expirar_instrucao);
-                narrador.falar(txtInstrucao.getContext().getString(R.string.expirar_instrucao));
+                //narrador.falar(txtInstrucao.getContext().getString(R.string.expirar_instrucao));
             }
         });
         AnimatorSet cicloUnico = new AnimatorSet();

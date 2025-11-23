@@ -15,24 +15,24 @@ import java.util.Locale;
 
 public class GerenciarSessaoRespiracao {
     private ActivityRespiracaoBinding binding;
-    private int ciclosTotais;
-    private int tempoInspirar;
-    private int tempoExpirar;
-    private int tempoPausa;
+    private long ciclosTotais;
+    private long tempoInspirar;
+    private long tempoExpirar;
+    private long tempoPausa;
 
     private AnimatorSet animadorBalao;
     private CountDownTimer contadorRegressivo;
 
-    private int cicloAtual;
+    private long cicloAtual;
     private boolean exercicioEmAndamento = false;
     private NarradorRespiracao narrador;
 
     public GerenciarSessaoRespiracao(
             ActivityRespiracaoBinding binding,
-            int ciclosTotais,
-            int tempoInspirar,
-            int tempoExpirar,
-            int tempoPausa,
+            long ciclosTotais,
+            long tempoInspirar,
+            long tempoExpirar,
+            long tempoPausa,
             NarradorRespiracao narrador) {
         this.binding = binding;
         this.ciclosTotais = ciclosTotais;
@@ -44,7 +44,7 @@ public class GerenciarSessaoRespiracao {
 
     public void prepararComponentes() {
         prepararAnimacao();
-        long duracaoTotal = (long) (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
+        long duracaoTotal =  (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
         prepararContador(duracaoTotal);
         resetarParaEstadoInicial();
     }
@@ -53,6 +53,7 @@ public class GerenciarSessaoRespiracao {
         if (exercicioEmAndamento)
             return;
         exercicioEmAndamento = true;
+        //narrador.falar(binding.txtInstrucao.getText().toString());
         animadorBalao.start();
         contadorRegressivo.start();
         binding.btnIniciar.setEnabled(false);
@@ -136,6 +137,7 @@ public class GerenciarSessaoRespiracao {
 
     private void finalizarSessao() {
         binding.txtInstrucao.setText(R.string.sessao_finalizada);
+        narrador.falar(binding.txtInstrucao.getText().toString());
         resetarParaEstadoInicial();
     }
 }

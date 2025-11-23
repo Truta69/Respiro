@@ -1,65 +1,61 @@
 package com.mazanca.newrespiracao.ui;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.animation.GerenciarTextoAnimacao;
-import com.mazanca.newrespiracao.controller.GerenciadorTipoRespiracao;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
-import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
-import com.mazanca.newrespiracao.model.RespiracaoConcentracao;
-import com.mazanca.newrespiracao.model.RespiracaoEnergia;
-import com.mazanca.newrespiracao.util.Cumprimento;
+import com.mazanca.newrespiracao.ui.config.BemVindoConfigurador;
 import com.mazanca.newrespiracao.util.GerarTelaUtil;
+import com.mazanca.newrespiracao.util.GerenciadorDeThemas;
 
 public class BemVindoActivity extends AppCompatActivity {
 
     private ActivityBemVindoBinding binding;
 
-    private GerenciarTextoAnimacao gerenciarTextoAnimacao;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTela(this, ActivityBemVindoBinding::inflate);
-        exibirCumprimento();
-        gerenciarTextoAnimacao = new GerenciarTextoAnimacao();
-        gerenciarTextoAnimacao.iniciaAnimacaoTexto(binding.txtSaudacao);
-        configurarBotoes();
-    }
-
-    private void configurarBotoes() {
-        new GerenciadorTipoRespiracao(this, binding.btnRelaxar, new RelaxamentoProfundo());
-        new GerenciadorTipoRespiracao(this, binding.btnEnergizar, new RespiracaoEnergia());
-        new GerenciadorTipoRespiracao(this, binding.btnConcentrar, new RespiracaoConcentracao());
-    }
-
-    private void exibirCumprimento() {
-        binding.txtSaudacao.setText(Cumprimento.retornarCumprimento());
+        new BemVindoConfigurador(this, binding).configurarTelaBemvindo();
+        setSupportActionBar(binding.toolbar);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        gerenciarTextoAnimacao.iniciarSeNecessario();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_config, menu);
+        MenuItem itemModo = menu.findItem(R.id.modo_noturno);
+        itemModo.setChecked(GerenciadorDeThemas.isModoNoturnoLigado());
+        return true;
     }
 
-    //cancela ao quase sair da tela para economizar recuros
     @Override
-    protected void onPause() {
-        super.onPause();
-        gerenciarTextoAnimacao.pausar();
-        //resentando aview
-        binding.txtSaudacao.setScaleX(1f);
-        binding.txtSaudacao.setScaleY(1f);
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.modo_noturno) {
+            boolean estado = !GerenciadorDeThemas.isModoNoturnoLigado();
+            GerenciadorDeThemas.modoNoturno(estado);
+            item.setChecked(estado);
+            if (estado) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+            getWindow().setWindowAnimations(android.R.style.Animation_Toast);
+            recreate();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        gerenciarTextoAnimacao.liberarRecursos();
         binding = null;
     }
 }

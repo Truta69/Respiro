@@ -5,3 +5,7 @@ Referencia aos id atraves do viewBinding.
 Ele gera uma classe automatica. se a classe e activityMain, entao ele gera ActivityMainBinding binding;
 agora faz binding.botaoIniciar.setText("Vai!");em vez de findviewbyid r.id...
 **********************************************************
+Verificacao de null
+**Carro c;==> tem a variavel, mas sem objeto, verifica se e null(if null..)
+**se metodo pode retornar null
+**sistema retorna algo que pode falhar==>View v = findViewById(R.id.texto);  // pode ser null

@@ -1,5 +1,6 @@
 package com.mazanca.newrespiracao.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -7,9 +8,8 @@ import android.view.View;
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
 import com.mazanca.newrespiracao.model.Respirar;
-import com.mazanca.newrespiracao.ui.BemVindoActivity;
 import com.mazanca.newrespiracao.ui.RespiracaoActivity;
-import com.mazanca.newrespiracao.util.ValoresConstantes;
+import com.mazanca.newrespiracao.util.Constantes;
 
 public class GerenciadorTipoRespiracao {
     private Context contexto;
@@ -31,21 +31,24 @@ public class GerenciadorTipoRespiracao {
 
     private void iniciarSessao(Respirar tipoRespiracao) {
         Intent intent = new Intent(contexto, RespiracaoActivity.class);
-        intent.putExtra(ValoresConstantes.EXTRA_NOME_EXERCICIO, tipoRespiracao.getNome());
-        intent.putExtra(ValoresConstantes.EXTRA_TEMPO_EXPIRAR, tipoRespiracao.getTempoExpirar());
-        intent.putExtra(ValoresConstantes.EXTRA_TEMPO_INSPIRAR, tipoRespiracao.getTempoInspirar());
-        intent.putExtra(ValoresConstantes.EXTRA_NUM_CICLOS, tipoRespiracao.getNumeroDeCiclos());
-        intent.putExtra(ValoresConstantes.EXTRA_TEMPO_PAUSA,tipoRespiracao.getTempoPausa());
+        intent.putExtra(Constantes.EXTRA_NOME_EXERCICIO, tipoRespiracao.getNome());
+        intent.putExtra(Constantes.EXTRA_TEMPO_EXPIRAR, tipoRespiracao.getTempoExpirar());
+        intent.putExtra(Constantes.EXTRA_TEMPO_INSPIRAR, tipoRespiracao.getTempoInspirar());
+        intent.putExtra(Constantes.EXTRA_NUM_CICLOS, tipoRespiracao.getNumeroDeCiclos());
+        intent.putExtra(Constantes.EXTRA_TEMPO_PAUSA, tipoRespiracao.getTempoPausa());
 
-        if(!(contexto instanceof android.app.Activity)){
+        if (!(contexto instanceof android.app.Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
+        mudarDeTela(intent);
+    }
 
+    private void mudarDeTela(Intent intent) {
         contexto.startActivity(intent);
-        if (contexto instanceof BemVindoActivity) {
-            ((BemVindoActivity) contexto).overridePendingTransition(
-                    R.anim.slide_in_right,
-                    R.anim.slide_out_left);
+        if (contexto instanceof Activity) {
+            Activity atual = (Activity) contexto;
+            atual.overridePendingTransition(
+                    R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }
 }

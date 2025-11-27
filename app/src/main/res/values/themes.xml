@@ -6,30 +6,42 @@
         <item name="colorSurface">@color/cor_fundo_tela_fixa</item>
         <item name="colorOnSurface">@color/cor_texto_fixa</item>
         <item name="actionMenuTextColor">@color/cor_texto_fixa</item>
+        <item name="colorControlNormal">@color/cor_texto_fixa</item>
     </style>
 
     <style name="Theme.NewRespiracao.Manha" parent="Theme.NewRespiracao">
+        <item name="android:windowBackground">@drawable/bg_gradiente_manha</item>
         <item name="colorPrimary">@color/corPrimariaManha</item>
         <item name="colorOnPrimary">@color/cor_texto_fixa</item>
+        <item name="colorControlNormal">@color/cor_texto_fixa</item>
     </style>
 
     <style name="Theme.NewRespiracao.Tarde" parent="Theme.NewRespiracao">
+        <item name="android:windowBackground">@drawable/bg_gradient_tarde</item>
         <item name="colorPrimary">@color/corPrimariaTarde</item>
         <item name="colorOnPrimary">@color/cor_texto_fixa</item>
+        <item name="colorControlNormal">@color/cor_texto_fixa</item>
     </style>
+    <!--
+        <style name="Theme.NewRespiracao.Noite" parent="Theme.NewRespiracao">
+            <item name="colorPrimary">@color/corPrimariaNoite</item>
+            <item name="colorOnPrimary">@color/cor_texto_fixa</item>
+            <item name="colorControlNormal">@color/cor_texto_fixa</item>
+        </style>
+    -->
 
     <style name="Theme.NewRespiracao.Noite" parent="Theme.NewRespiracao">
+        <item name="android:windowBackground">@drawable/bg_gradient_noite</item>
         <item name="colorPrimary">@color/corPrimariaNoite</item>
         <item name="colorOnPrimary">@color/cor_texto_fixa</item>
+        <item name="colorControlNormal">@color/cor_texto_fixa</item>
     </style>
 
     <style name="Theme.NewRespiracao.Noturno" parent="Theme.NewRespiracao">
-        <item name="colorSurface">@color/cor_fundo_tela_fixa_noite</item>
-        <item name="colorOnSurface">@color/cor_texto_fixa_noite</item>
-
+        <item name="android:windowBackground">@drawable/bg_modo_escuro</item>
         <item name="colorPrimary">@color/corPrimariaNoite_escuro</item>
         <item name="colorOnPrimary">@color/cor_texto_fixa_noite</item>
-
+        <item name="colorControlNormal">@color/cor_texto_fixa_noite</item>
     </style>
 
 </resources>

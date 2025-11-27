@@ -1,5 +1,5 @@
 
-package com.mazanca.newrespiracao.audio;
+package com.mazanca.newrespiracao.core.audio;
 
 import android.content.Context;
 import android.speech.tts.TextToSpeech;

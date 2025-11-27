@@ -7,9 +7,13 @@
     <color name="corPrimariaTarde">#EDBA52</color>
     <color name="corPrimariaNoite">#69E2FF</color>
     <!-- Fundo e texto do modo noturno -->
-    <color name="cor_fundo_tela_fixa_noite">#121212</color>
+    <color name="cor_fundo_tela_fixa_noite">#929292</color>
     <color name="cor_texto_fixa_noite">#FFFFFF</color>
     <!-- Cor primária especial para o modo noturno -->
-    <color name="corPrimariaNoite_escuro">#BB86FC</color>
+    <color name="corPrimariaNoite_escuro">#000000</color>
     <color name="corPrimariaEscuro_BOTAO">#FFFFFF</color>
+    <!--PARA MODO NOTURNO-->
+    <color name="cinza_escuro_noite">#2B2B2B</color>   <!-- quase preto -->
+    <color name="cinza_medio_noite">#4A4A4A</color>    <!-- intermediário -->
+    <color name="cinza_claro_noite">#D9D9D9</color>
 </resources>

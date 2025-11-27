@@ -1,4 +1,4 @@
-package com.mazanca.newrespiracao.animation;
+package com.mazanca.newrespiracao.core.animation;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -10,10 +10,10 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 
 public class AnimarBalao {
-    private static final float ESCALA_MAX = 3F;
+    private static final float ESCALA_MAX = 2F;
     private static final float ESCALA_MIN = 1F;
 
     public static AnimatorSet criarCicloDeRespiracao(

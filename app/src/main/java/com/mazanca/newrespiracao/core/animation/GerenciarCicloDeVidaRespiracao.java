@@ -1,10 +1,10 @@
-package com.mazanca.newrespiracao.animation;
+package com.mazanca.newrespiracao.core.animation;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
-import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.controller.GerenciarSessaoRespiracao;
 
 public class GerenciarCicloDeVidaRespiracao implements DefaultLifecycleObserver {

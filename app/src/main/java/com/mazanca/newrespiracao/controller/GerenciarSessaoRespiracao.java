@@ -7,8 +7,8 @@ import android.os.CountDownTimer;
 import android.view.View;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.animation.AnimarBalao;
-import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.animation.AnimarBalao;
+import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 
 import java.util.Locale;

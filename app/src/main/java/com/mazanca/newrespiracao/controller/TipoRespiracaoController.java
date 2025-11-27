@@ -6,30 +6,21 @@ import android.content.Intent;
 import android.view.View;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
+import com.mazanca.newrespiracao.core.util.Constantes;
+import com.mazanca.newrespiracao.features.respiracao.RespiracaoActivity;
 import com.mazanca.newrespiracao.model.Respirar;
-import com.mazanca.newrespiracao.ui.RespiracaoActivity;
-import com.mazanca.newrespiracao.util.Constantes;
 
-public class GerenciadorTipoRespiracao {
+public class TipoRespiracaoController {
     private Context contexto;
-    private View botao;
-    //private Respiracao tipoRespiracao;
     private Respirar tipoRespiracao;
-    private RelaxamentoProfundo relaxamentoProfundo;
 
-    public GerenciadorTipoRespiracao(Context contexto, View botao, Respirar tipoRespiracao) {
+    public TipoRespiracaoController(Context contexto, View botao, Respirar tipoRespiracao) {
         this.contexto = contexto;
-        this.botao = botao;
         this.tipoRespiracao = tipoRespiracao;
-        configuracaoBotao();
+        botao.setOnClickListener(v -> iniciarSessao());
     }
 
-    private void configuracaoBotao() {
-        botao.setOnClickListener(v -> iniciarSessao(tipoRespiracao));
-    }
-
-    private void iniciarSessao(Respirar tipoRespiracao) {
+    private void iniciarSessao() {
         Intent intent = new Intent(contexto, RespiracaoActivity.class);
         intent.putExtra(Constantes.EXTRA_NOME_EXERCICIO, tipoRespiracao.getNome());
         intent.putExtra(Constantes.EXTRA_TEMPO_EXPIRAR, tipoRespiracao.getTempoExpirar());
@@ -37,7 +28,7 @@ public class GerenciadorTipoRespiracao {
         intent.putExtra(Constantes.EXTRA_NUM_CICLOS, tipoRespiracao.getNumeroDeCiclos());
         intent.putExtra(Constantes.EXTRA_TEMPO_PAUSA, tipoRespiracao.getTempoPausa());
 
-        if (!(contexto instanceof android.app.Activity)) {
+        if (!(contexto instanceof Activity)) {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         }
         mudarDeTela(intent);
@@ -46,8 +37,8 @@ public class GerenciadorTipoRespiracao {
     private void mudarDeTela(Intent intent) {
         contexto.startActivity(intent);
         if (contexto instanceof Activity) {
-            Activity atual = (Activity) contexto;
-            atual.overridePendingTransition(
+            Activity atividade =(Activity) contexto;
+            atividade.overridePendingTransition(
                     R.anim.slide_in_right, R.anim.slide_out_left);
         }
     }

@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">NewRespiracao</string>
-    <string name="titulo">Respiração</string>
+    <string name="app_name">Respiracao</string>
     <string name="sub_titulo">Pausas para sua mente</string>
     <string name="str_iniciar">Iniciar</string>
     <string name="botao_relaxar">Relaxar</string>
@@ -10,6 +9,5 @@
     <string name="inspirar_instrucao">Inspire</string>
     <string name="expirar_instrucao">Expire</string>
     <string name="segure_instrucao">Segure..</string>
-    <string name="vamos_la_instrucao">Vamos lá</string>
     <string name="sessao_finalizada">Acabou..</string>
 </resources>

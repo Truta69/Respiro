@@ -1,4 +1,4 @@
-package com.mazanca.newrespiracao.animation;
+package com.mazanca.newrespiracao.core.animation;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

@@ -1,8 +1,10 @@
-package com.mazanca.newrespiracao.animation;
+package com.mazanca.newrespiracao.core.animation;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.widget.TextView;
+
+import com.mazanca.newrespiracao.core.animation.AnimarTexto;
 
 public class GerenciarTextoAnimacao {
     private Animator animatorTexto;

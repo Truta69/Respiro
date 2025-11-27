@@ -1,23 +1,23 @@
-package com.mazanca.newrespiracao.ui.config;
+package com.mazanca.newrespiracao.features.respiracao;
 
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mazanca.newrespiracao.animation.GerenciarCicloDeVidaRespiracao;
-import com.mazanca.newrespiracao.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.animation.GerenciarCicloDeVidaRespiracao;
 import com.mazanca.newrespiracao.controller.GerenciarSessaoRespiracao;
+import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.util.Constantes;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 import com.mazanca.newrespiracao.model.ParametrosRespiracao;
-import com.mazanca.newrespiracao.util.Constantes;
 
-public class RespiracaoConfigurador {
+public class RespiracaoConfig {
     private AppCompatActivity activity;
     private ActivityRespiracaoBinding binding;
     private GerenciarSessaoRespiracao gerenciarSessao;
     private NarradorRespiracao narrador;
 
-    public RespiracaoConfigurador(AppCompatActivity activity, ActivityRespiracaoBinding binding) {
+    public RespiracaoConfig(AppCompatActivity activity, ActivityRespiracaoBinding binding) {
         this.activity = activity;
         this.binding = binding;
     }

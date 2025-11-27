@@ -1,4 +1,4 @@
-package com.mazanca.newrespiracao.util;
+package com.mazanca.newrespiracao.core.util;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

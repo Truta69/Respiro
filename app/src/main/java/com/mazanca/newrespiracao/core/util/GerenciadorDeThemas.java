@@ -1,4 +1,4 @@
-package com.mazanca.newrespiracao.util;
+package com.mazanca.newrespiracao.core.util;
 
 import com.mazanca.newrespiracao.R;
 
@@ -9,7 +9,7 @@ public class GerenciadorDeThemas {
     private static boolean modoNoturnoLigado = false;
 
     public static int getThema() {
-       // return getThemaParaHora(LocalTime.now());
+        // return getThemaParaHora(LocalTime.now());
         return getTemaFinal(LocalTime.now());
     }
 
@@ -32,16 +32,16 @@ public class GerenciadorDeThemas {
         return modoNoturnoLigado;
     }
 
-    public  static int getTemaFinal(LocalTime horaDia) {
+    public static int getTemaFinal(LocalTime horaDia) {
         if (modoNoturnoLigado) {
             return R.style.Theme_NewRespiracao_Noturno;
         }
         int hora = horaDia.getHour();
-        if (hora <= 12 ) {
+        if (hora >= 0 && hora < 12) {
             return R.style.Theme_NewRespiracao_Manha;
-        } else if (hora >= 12 && hora > 18) {
+        } else if (hora >= 12 && hora < 18) {
             return R.style.Theme_NewRespiracao_Tarde;
-        } else  {
+        } else {
             return R.style.Theme_NewRespiracao_Noite;
         }
     }

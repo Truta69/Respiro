@@ -3,17 +3,16 @@ package com.mazanca.newrespiracao.controller;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
-import android.os.CountDownTimer;
 import android.view.View;
 
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.core.animation.AnimarBalao;
 import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
+import com.mazanca.newrespiracao.core.timer.ContadorSessaoListener;
+import com.mazanca.newrespiracao.core.timer.GerenciadorContadorSessao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 
-import java.util.Locale;
-
-public class GerenciarSessaoRespiracao {
+public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     private ActivityRespiracaoBinding binding;
     private long ciclosTotais;
     private long tempoInspirar;
@@ -21,7 +20,7 @@ public class GerenciarSessaoRespiracao {
     private long tempoPausa;
 
     private AnimatorSet animadorBalao;
-    private CountDownTimer contadorRegressivo;
+    private GerenciadorContadorSessao contador;
 
     private long cicloAtual;
     private boolean exercicioEmAndamento = false;
@@ -44,19 +43,21 @@ public class GerenciarSessaoRespiracao {
 
     public void prepararComponentes() {
         prepararAnimacao();
-        long duracaoTotal =  (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
+        long duracaoTotal = (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
         prepararContador(duracaoTotal);
         resetarParaEstadoInicial();
     }
+    private void setBotaoIniciarHabilitado(boolean habilitado){
+        binding.btnIniciar.setEnabled(habilitado);
+    }
 
     public void iniciar() {
-        if (exercicioEmAndamento)
-            return;
+        if (exercicioEmAndamento) return;
         exercicioEmAndamento = true;
         //narrador.falar(binding.txtInstrucao.getText().toString());
+        contador.iniciar();
         animadorBalao.start();
-        contadorRegressivo.start();
-        binding.btnIniciar.setEnabled(false);
+        setBotaoIniciarHabilitado(false);
         binding.txtInstrucao.setVisibility(View.VISIBLE);
     }
 
@@ -91,38 +92,33 @@ public class GerenciarSessaoRespiracao {
     public void resetarParaEstadoInicial() {
         exercicioEmAndamento = false;
         cicloAtual = 0;
-        if (contadorRegressivo != null)
-            contadorRegressivo.cancel();
+        if (contador != null)
+            contador.cancelar();
         if (animadorBalao != null && animadorBalao.isStarted())
             animadorBalao.cancel();
         binding.toolbarRetornar.setSubtitle(null);
         binding.circuloAnimado.animate().cancel();
         binding.circuloAnimado.setScaleX(1f);
         binding.circuloAnimado.setScaleY(1f);
-        binding.btnIniciar.setEnabled(true);
+        setBotaoIniciarHabilitado(true);
     }
 
-    private void prepararContador(long duracaoTotal) {
-        contadorRegressivo = new CountDownTimer(duracaoTotal * 1000, 1000) {
-            @Override
-            public void onTick(long millisAteOFim) {
-                long segundosRestantes = millisAteOFim / 1000;
-                long minutos = segundosRestantes / 60;
-                long segundos = segundosRestantes % 60;
-                String tempoFormatado = String.format(Locale.getDefault(),
-                        "%02d:%02d",
-                        minutos,
-                        segundos);
-                binding.toolbarRetornar.setSubtitle(tempoFormatado);
-            }
+    private void prepararContador(long duracao) {
+        this.contador = new GerenciadorContadorSessao(duracao, this);
+    }
 
-            @Override
-            public void onFinish() {
-                if (exercicioEmAndamento) {
-                    finalizarSessao();
-                }
-            }
-        };
+    @Override
+    public void onTick(String tempoFormatado) {
+        // A lógica de formatação já está no GerenciadorContadorSessao.
+        // O controlador só precisa atualizar a View.
+        binding.toolbarRetornar.setSubtitle(tempoFormatado);
+    }
+
+    @Override
+    public void onFinish() {
+        if (exercicioEmAndamento) {
+            finalizarSessao();
+        }
     }
 
     public void liberarRecursos() {
@@ -130,8 +126,8 @@ public class GerenciarSessaoRespiracao {
             animadorBalao.removeAllListeners();
             animadorBalao.cancel();
         }
-        if (contadorRegressivo != null) {
-            contadorRegressivo.cancel();
+        if (contador != null) {
+            contador.cancelar();
         }
     }
 

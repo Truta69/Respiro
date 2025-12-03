@@ -1,10 +1,10 @@
-package com.mazanca.newrespiracao.features.bemvindo;
+package com.mazanca.newrespiracao.ui.bemvindo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.core.animation.GerenciarCicloVidaAnimcao;
-import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 import com.mazanca.newrespiracao.core.util.Cumprimento;
+import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 
 public class BemVindoConfig {
     private AppCompatActivity activity;

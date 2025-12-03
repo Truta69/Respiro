@@ -13,22 +13,24 @@
         android:theme="@style/Theme.NewRespiracao"
         tools:targetApi="31">
         <activity
-            android:name=".features.bemvindo.BemVindoActivity"
+            android:name=".ui.escolherCards.EscolherRespiracaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.bemvindo.BemVindoActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".features.principal.PrincipalActivity"
+            android:name=".ui.principal.PrincipalActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name=".features.respiracao.RespiracaoActivity"
+            android:name=".ui.respiracao.RespiracaoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
     </application>

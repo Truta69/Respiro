@@ -1,4 +1,4 @@
-package com.mazanca.newrespiracao.features.principal;
+package com.mazanca.newrespiracao.ui.principal;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,20 +9,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.databinding.ActivityPrincipalBinding;
 import com.mazanca.newrespiracao.core.util.GerarTelaUtil;
 import com.mazanca.newrespiracao.core.util.GerenciadorDeThemas;
+import com.mazanca.newrespiracao.databinding.ActivityPrincipalBinding;
 
 public class PrincipalActivity extends AppCompatActivity {
 
     private ActivityPrincipalBinding binding;
+    private PrincipalConfig config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTela(this, ActivityPrincipalBinding::inflate);
-        new PrincipalConfig(this, binding).configurarPrincipal();
+        this.config = new PrincipalConfig(this, binding);
+        iniciar();
         setSupportActionBar(binding.toolbar);
+    }
+
+    private void iniciar() {
+        this.config.configurarPrincipal();
     }
 
     @Override
@@ -56,7 +62,7 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.modo_noturno);
-        boolean modoEscuroAtivo = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES;
+        boolean modoEscuroAtivo = GerenciadorDeThemas.isModoNoturnoLigado();
         if (modoEscuroAtivo) {
             item.setTitle("Modo claro");
         } else {

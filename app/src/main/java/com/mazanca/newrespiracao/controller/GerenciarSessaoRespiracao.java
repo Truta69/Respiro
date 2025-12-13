@@ -45,8 +45,7 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         prepararAnimacao();
         long duracaoTotal = (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
         prepararContador(duracaoTotal);
-        resetarParaEstadoInicial();
-    }
+   }
     private void setBotaoIniciarHabilitado(boolean habilitado){
         binding.btnIniciar.setEnabled(habilitado);
     }
@@ -57,7 +56,6 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         //narrador.falar(binding.txtInstrucao.getText().toString());
         contador.iniciar();
         animadorBalao.start();
-        setBotaoIniciarHabilitado(false);
         binding.txtInstrucao.setVisibility(View.VISIBLE);
     }
 
@@ -100,7 +98,6 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         binding.circuloAnimado.animate().cancel();
         binding.circuloAnimado.setScaleX(1f);
         binding.circuloAnimado.setScaleY(1f);
-        setBotaoIniciarHabilitado(true);
     }
 
     private void prepararContador(long duracao) {
@@ -109,8 +106,6 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
 
     @Override
     public void onTick(String tempoFormatado) {
-        // A lógica de formatação já está no GerenciadorContadorSessao.
-        // O controlador só precisa atualizar a View.
         binding.toolbarRetornar.setSubtitle(tempoFormatado);
     }
 
@@ -119,6 +114,16 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         if (exercicioEmAndamento) {
             finalizarSessao();
         }
+    }
+
+    @Override
+    public void onSessaoStart() {
+        setBotaoIniciarHabilitado(false);
+    }
+
+    @Override
+    public void onSessaoEnd(boolean fimNatural) {
+        setBotaoIniciarHabilitado(true);
     }
 
     public void liberarRecursos() {

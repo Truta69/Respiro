@@ -9,6 +9,11 @@ import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
 import com.mazanca.newrespiracao.model.RespiracaoConcentracao;
 import com.mazanca.newrespiracao.model.RespiracaoEnergia;
 
+/**
+ * lembrar de separar a chmamda de em duas config
+ * EscolherCardsUIConfig → toolbar, textos, cores
+ * EscolherCardsNavConfig → ações de clique
+ */
 public class EscolherCardsConfig {
     private AppCompatActivity activity;
     private ActivityEscolherRespiracaoBinding binding;

@@ -10,20 +10,28 @@ import com.mazanca.newrespiracao.databinding.ActivityEscolherRespiracaoBinding;
 
 public class EscolherRespiracaoActivity extends AppCompatActivity {
     private ActivityEscolherRespiracaoBinding binding;
+    private EscolherCardsConfig config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTela(this, ActivityEscolherRespiracaoBinding::inflate);
-        new EscolherCardsConfig(this, binding).configurarTelaCards();
+        config = new EscolherCardsConfig(this, binding);
+        configurar();
+    }
+
+    private void configurar() {
+        config.configurarTelaCards();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
+        config = null;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void finish() {
         super.finish();

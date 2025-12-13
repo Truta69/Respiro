@@ -22,9 +22,9 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTela(this, ActivityPrincipalBinding::inflate);
-        this.config = new PrincipalConfig(this, binding);
-        iniciar();
+        config = new PrincipalConfig(this, binding);
         setSupportActionBar(binding.toolbar);
+        iniciar();
     }
 
     private void iniciar() {
@@ -41,8 +41,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.modo_noturno) {
+        if (item.getItemId() == R.id.modo_noturno) {
             boolean estado = !GerenciadorDeThemas.isModoNoturnoLigado();
             GerenciadorDeThemas.modoNoturno(estado);
             item.setChecked(estado);
@@ -51,9 +50,7 @@ public class PrincipalActivity extends AppCompatActivity {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
-            getWindow().setWindowAnimations(android.R.style.Animation_Toast);
             recreate();
-            invalidateOptionsMenu();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -62,12 +59,9 @@ public class PrincipalActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.modo_noturno);
-        boolean modoEscuroAtivo = GerenciadorDeThemas.isModoNoturnoLigado();
-        if (modoEscuroAtivo) {
-            item.setTitle("Modo claro");
-        } else {
-            item.setTitle("Modo escuro");
-        }
+        item.setTitle(GerenciadorDeThemas.isModoNoturnoLigado()
+                ? "Modo claro"
+                : "Modo escuro");
         return super.onPrepareOptionsMenu(menu);
     }
 

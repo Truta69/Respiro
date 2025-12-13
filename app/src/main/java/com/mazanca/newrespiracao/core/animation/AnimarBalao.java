@@ -19,13 +19,13 @@ public class AnimarBalao {
     public static AnimatorSet criarCicloDeRespiracao(
             View circulo,
             TextView txtInstrucao,
-           long tempoInspirar,
-           long tempoExpirar,
-           long tempoPausa,
+            long tempoInspirar,
+            long tempoExpirar,
+            long tempoPausa,
             NarradorRespiracao narrador) {//para falar
-        long inspirar = tempoInspirar * 1000L;
-        long expirar = tempoExpirar * 1000L;
-        long pausar = tempoPausa * 1000L;
+        final long inspirar = tempoInspirar * 1000L;
+        final long expirar = tempoExpirar * 1000L;
+        final long pausar = tempoPausa * 1000L;
         // --- PREPARA A ANIMAÇÃO DE INSPIRAÇÃO (CRESCER) ---
         // Usamos PropertyValuesHolder para animar
         // scaleX e scaleY de forma limpa e conjunta.

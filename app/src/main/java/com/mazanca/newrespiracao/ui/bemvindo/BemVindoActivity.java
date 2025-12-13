@@ -1,49 +1,37 @@
 package com.mazanca.newrespiracao.ui.bemvindo;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
-import com.mazanca.newrespiracao.core.util.FrasesMotivacionais;
 import com.mazanca.newrespiracao.core.util.GerarTelaUtil;
-import com.mazanca.newrespiracao.core.util.GerenciadorDeThemas;
+import com.mazanca.newrespiracao.core.util.TransicaoDeTelas;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 import com.mazanca.newrespiracao.ui.principal.PrincipalActivity;
-
-import java.time.LocalTime;
 
 public class BemVindoActivity extends AppCompatActivity {
     private ActivityBemVindoBinding binding;
     private long tempoDeAnimacao = 4000;
+    private BemVindoConfig config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = GerarTelaUtil.configurarTela(this, ActivityBemVindoBinding::inflate);
+        this.config = new BemVindoConfig(getLifecycle(), binding);
         configurarTela();
         iniciarTransicao();
-        carregarFraseMotivacional();
-    }
-
-    private void carregarFraseMotivacional() {
-        String str = FrasesMotivacionais.fraseDoDia();
-        binding.txtMotivacao.setText(str);
-        int tema = GerenciadorDeThemas.getTemaFinal(LocalTime.now());
-        if (tema == R.style.Theme_NewRespiracao_Noite || tema == R.style.Theme_NewRespiracao_Noturno)
-            binding.txtMotivacao.setTextColor(Color.WHITE);
     }
 
     private void configurarTela() {
-        new BemVindoConfig(this, binding).configurarTelaBemvindo();
+        config.configurarTelaBemvindo();
     }
 
+    @SuppressWarnings("deprecation")
     private void iniciarTransicao() {
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+        binding.getRoot().postDelayed(() -> {
             Intent intent = new Intent(this, PrincipalActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

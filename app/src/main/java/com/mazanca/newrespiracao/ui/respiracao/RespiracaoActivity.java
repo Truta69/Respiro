@@ -31,6 +31,7 @@ public class RespiracaoActivity extends AppCompatActivity {
         binding = null;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void finish() {
         super.finish();

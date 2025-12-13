@@ -3,7 +3,6 @@ package com.mazanca.newrespiracao.core.util;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Stream;
 
 public class FrasesMotivacionais {
 
@@ -18,7 +17,10 @@ public class FrasesMotivacionais {
             "Você é capaz.",
             "Seja a mudança.",
             "Seja sua propria luz.",
-            "Se você pode sonhar, pode realizar."
+            "Se você pode sonhar, pode realizar.",
+            "Respire fundo. É um novo dia.",
+            "Não é o stress que te faz mal, mas sim sua reação a ele.",
+            "Silencie a mente, acalme o coração e relaxe o corpo."
     );
 
     public static String fraseDoDia() {

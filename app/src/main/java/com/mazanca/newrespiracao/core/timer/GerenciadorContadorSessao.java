@@ -17,34 +17,42 @@ public class GerenciadorContadorSessao {
     }
 
     private void prepararContador() {
-        //estava antes dentro de gerenciarsessaorespiracao
         contadorRegressivo = new CountDownTimer(duracaoTotalMillis, 1000) {
             @Override
             public void onTick(long millisAteOFim) {
-                long segundosRestantes = millisAteOFim / 1000;
-                long minutos = segundosRestantes / 60;
-                long segundos = segundosRestantes % 60;
-                String tempoFormatado = String.format(Locale.getDefault(),
-                        "%02d:%02d", minutos, segundos);
-                // Notifica o Listener (o controlador)
-                listener.onTick(tempoFormatado);
+                listener.onTick(formatarTempo(millisAteOFim));
             }
 
             @Override
             public void onFinish() {
                 listener.onFinish();
+                listener.onSessaoEnd(true);
             }
         };
     }
 
+    private String formatarTempo(long millisRestantes) {
+        long segundosRestantes = millisRestantes / 1000;
+        long minutos = segundosRestantes / 60;
+        long segundos = segundosRestantes % 60;
+        return String.format(Locale.getDefault(),
+                "%02d:%02d", minutos, segundos);
+    }
+
+    /**
+     * listener agora desabilita o botao
+     */
     public void iniciar() {
         if (contadorRegressivo != null)
+            listener.onSessaoStart();
             contadorRegressivo.start();
     }
 
     public void cancelar() {
         if (contadorRegressivo != null) {
             contadorRegressivo.cancel();
+            listener.onSessaoEnd(false);
+            contadorRegressivo = null;
         }
     }
 }

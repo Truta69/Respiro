@@ -16,13 +16,30 @@ public class GerenciarCicloDeVidaRespiracao implements DefaultLifecycleObserver 
         this.narrador = narrador;
     }
 
+    /**
+     * @param ownerresetar se a activity sair da tela
+     * por ex, tel tocar...
+     */
+    @Override
+    public void onStop(@NonNull LifecycleOwner owner) {
+        if (gerenciarSessao != null) {
+            gerenciarSessao.resetarParaEstadoInicial();
+        }
+        if (narrador != null) {
+            narrador.parar();
+        }
+    }
+
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
         if (gerenciarSessao != null) {
+            gerenciarSessao.resetarParaEstadoInicial();
             gerenciarSessao.liberarRecursos();
         }
         if (narrador != null) {
             narrador.parar();
         }
+        gerenciarSessao=null;
+        narrador=null;
     }
 }

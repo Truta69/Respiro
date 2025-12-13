@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
-public class GerenciarCicloVidaAnimcao implements DefaultLifecycleObserver {
+public class GerenciarCicloVidaAnimacao implements DefaultLifecycleObserver {
     private GerenciarTextoAnimacao textAnimator;
     private TextView textView;
 
-    public GerenciarCicloVidaAnimcao(TextView textView) {
+    public GerenciarCicloVidaAnimacao(TextView textView) {
         this.textAnimator = new GerenciarTextoAnimacao();
         this.textView = textView;
         this.textAnimator.iniciaAnimacaoTexto(this.textView);

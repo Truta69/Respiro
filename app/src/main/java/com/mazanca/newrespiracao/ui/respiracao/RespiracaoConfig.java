@@ -1,6 +1,7 @@
 package com.mazanca.newrespiracao.ui.respiracao;
 
 import android.content.Intent;
+import android.os.Parcelable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,7 @@ import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.core.util.Constantes;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 import com.mazanca.newrespiracao.model.ParametrosRespiracao;
+import com.mazanca.newrespiracao.model.Respirar;
 
 public class RespiracaoConfig {
     private final AppCompatActivity activity;//garantir que camos nao mudam
@@ -36,20 +38,23 @@ public class RespiracaoConfig {
                 binding,
                 parametros.cicloTotais(),
                 parametros.tempoInspirar(),
-                parametros.tempoInspirar(),
+                parametros.tempoExpirar(),
                 parametros.tempoPausa(),
                 this.narrador);
         gerenciarSessao.prepararComponentes();
     }
 
+    @SuppressWarnings("deprecation")
     private ParametrosRespiracao obterParametros() {
         Intent intent = activity.getIntent();
-        return new ParametrosRespiracao(
-                intent.getStringExtra(Constantes.EXTRA_NOME_EXERCICIO),
-                intent.getLongExtra(Constantes.EXTRA_TEMPO_EXPIRAR, 4),
-                intent.getLongExtra(Constantes.EXTRA_TEMPO_INSPIRAR, 4),
-                intent.getLongExtra(Constantes.EXTRA_NUM_CICLOS, 4),
-                intent.getLongExtra(Constantes.EXTRA_TEMPO_PAUSA, 0));
+        Respirar tipo = (Respirar) intent.getParcelableExtra(Constantes.EXTRA_TIPO_RESPIRACAO);
+        return new ParametrosRespiracao(tipo);
+//        return new ParametrosRespiracao(
+//                intent.getStringExtra(Constantes.EXTRA_NOME_EXERCICIO),
+//                intent.getLongExtra(Constantes.EXTRA_TEMPO_INSPIRAR, 4),
+//                intent.getLongExtra(Constantes.EXTRA_TEMPO_EXPIRAR, 4),
+//                intent.getLongExtra(Constantes.EXTRA_NUM_CICLOS, 4),
+//                intent.getLongExtra(Constantes.EXTRA_TEMPO_PAUSA, 0));
     }
 
     private void configurarToolbar(String nomeExecicio) {

@@ -4,11 +4,9 @@ import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.widget.TextView;
 
-import com.mazanca.newrespiracao.core.animation.AnimarTexto;
-
 public class GerenciarTextoAnimacao {
     private Animator animatorTexto;
-    private boolean jaIniciou = false;
+    private boolean iniciado = false;
 
     public Animator iniciaAnimacaoTexto(TextView txtView) {
         animatorTexto = AnimarTexto.iniciarAnimacaoCumprimento(txtView);
@@ -20,9 +18,9 @@ public class GerenciarTextoAnimacao {
     }
 
     public void iniciarSeNecessario() {
-        if (animatorTexto != null && !jaIniciou) {
+        if (animatorTexto != null && !iniciado) {
             animatorTexto.start();
-            jaIniciou = true;
+            iniciado = true;
         }
     }
 
@@ -37,6 +35,6 @@ public class GerenciarTextoAnimacao {
             animatorTexto.cancel();
             animatorTexto = null;
         }
-        jaIniciou = false;
+        iniciado = false;
     }
 }

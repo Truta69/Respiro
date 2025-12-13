@@ -1,17 +1,24 @@
 package com.mazanca.newrespiracao.ui.bemvindo;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
 
-import com.mazanca.newrespiracao.core.animation.GerenciarCicloVidaAnimcao;
+import androidx.lifecycle.Lifecycle;
+
+import com.mazanca.newrespiracao.R;
+import com.mazanca.newrespiracao.core.animation.GerenciarCicloVidaAnimacao;
 import com.mazanca.newrespiracao.core.util.Cumprimento;
+import com.mazanca.newrespiracao.core.util.FrasesMotivacionais;
+import com.mazanca.newrespiracao.core.util.GerenciadorDeThemas;
 import com.mazanca.newrespiracao.databinding.ActivityBemVindoBinding;
 
+import java.time.LocalTime;
+
 public class BemVindoConfig {
-    private AppCompatActivity activity;
+    private Lifecycle lifecycle;
     private ActivityBemVindoBinding binding;
 
-    public BemVindoConfig(AppCompatActivity activity, ActivityBemVindoBinding binding) {
-        this.activity = activity;
+    public BemVindoConfig(Lifecycle lifecycle, ActivityBemVindoBinding binding) {
+        this.lifecycle = lifecycle;
         this.binding = binding;
     }
 
@@ -19,6 +26,7 @@ public class BemVindoConfig {
     public void configurarTelaBemvindo() {
         exibirCumprimento();
         configurarAnimacao();
+        exibirFraseMotivadora();
     }
 
     private void exibirCumprimento() {
@@ -26,8 +34,16 @@ public class BemVindoConfig {
         binding.txtSaudacao.setText(texto);
     }
 
+    private void exibirFraseMotivadora() {
+        String frase = FrasesMotivacionais.fraseDoDia();
+        binding.txtMotivacao.setText(frase);
+        int tema = GerenciadorDeThemas.getTemaFinal(LocalTime.now());
+        if (tema == R.style.Theme_NewRespiracao_Noite || tema == R.style.Theme_NewRespiracao_Noturno)
+            binding.txtMotivacao.setTextColor(Color.WHITE);
+    }
+
     private void configurarAnimacao() {
-        GerenciarCicloVidaAnimcao animador = new GerenciarCicloVidaAnimcao(binding.txtSaudacao);
-        activity.getLifecycle().addObserver(animador);
+        GerenciarCicloVidaAnimacao animador = new GerenciarCicloVidaAnimacao(binding.txtSaudacao);
+        lifecycle.addObserver(animador);
     }
 }

@@ -12,5 +12,8 @@ public record ParametrosRespiracao(
         long cicloTotais,
         long tempoPausa
 ) {
+    public ParametrosRespiracao(Respirar r){
+        this(r.getNome(),r.getTempoInspirar(),r.getTempoExpirar(),r.getNumeroDeCiclos(),r.getTempoPausa());
+    }
 }
 

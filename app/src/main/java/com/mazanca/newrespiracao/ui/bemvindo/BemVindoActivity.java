@@ -29,12 +29,10 @@ public class BemVindoActivity extends AppCompatActivity {
         config.configurarTelaBemvindo();
     }
 
-    @SuppressWarnings("deprecation")
     private void iniciarTransicao() {
         binding.getRoot().postDelayed(() -> {
             Intent intent = new Intent(this, PrincipalActivity.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            TransicaoDeTelas.transitar(this,intent,R.anim.slide_in_right,R.anim.slide_out_left);
             finish();
         }, tempoDeAnimacao);
     }

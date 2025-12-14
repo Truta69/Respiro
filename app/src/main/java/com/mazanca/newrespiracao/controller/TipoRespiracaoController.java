@@ -24,12 +24,13 @@ public class TipoRespiracaoController {
 
     private void iniciarSessao() {
         var intent = criarIntentRespiracao();
-        if (!(contexto instanceof Activity)) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        abrirActivity(intent);
+        TransicaoDeTelas.transitar(
+                contexto,
+                intent,
+                R.anim.slide_in_right,
+                R.anim.slide_out_left
+        );
     }
-
     /**
      * passa o objeto ,nao mais campo por campo
      * @return
@@ -38,16 +39,5 @@ public class TipoRespiracaoController {
         var intent = new Intent(contexto, RespiracaoActivity.class);
         intent.putExtra(Constantes.EXTRA_TIPO_RESPIRACAO, tipoRespiracao);
         return intent;
-    }
-
-    @SuppressWarnings("deprecation")
-    private void abrirActivity(Intent intent) {
-        if (contexto instanceof Activity atividade) {
-            atividade.startActivity(intent);
-            atividade.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        } else {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            contexto.startActivity(intent);
-        }
     }
 }

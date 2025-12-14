@@ -23,8 +23,7 @@ public class PrincipalConfig {
     private void configurarNavegacao() {
         binding.cardTop.setOnClickListener(v -> {
             Intent intent = new Intent(activity, EscolherRespiracaoActivity.class);
-            activity.startActivity(intent);
-            activity.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            TransicaoDeTelas.transitar(activity, intent, R.anim.slide_in_right, R.anim.slide_out_left);
         });
     }
 

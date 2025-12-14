@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.core.util.GerarTelaUtil;
+import com.mazanca.newrespiracao.core.util.TransicaoDeTelas;
 import com.mazanca.newrespiracao.databinding.ActivityEscolherRespiracaoBinding;
 
 public class EscolherRespiracaoActivity extends AppCompatActivity {
@@ -35,6 +36,6 @@ public class EscolherRespiracaoActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        TransicaoDeTelas.fecharActivity(this,R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

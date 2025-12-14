@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.core.util.GerarTelaUtil;
+import com.mazanca.newrespiracao.core.util.TransicaoDeTelas;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
 
 public class RespiracaoActivity extends AppCompatActivity {
@@ -21,7 +22,6 @@ public class RespiracaoActivity extends AppCompatActivity {
     }
 
     private void inicializaConfiguracao() {
-        //new RespiracaoConfig(this, binding).configurarTelaRespiracao();
         this.config.configurarTelaRespiracao();//apenas chma o metodo
     }
 
@@ -35,6 +35,6 @@ public class RespiracaoActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        TransicaoDeTelas.fecharActivity(this,R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

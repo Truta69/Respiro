@@ -39,8 +39,7 @@ public class RespiracaoConfig {
                 parametros.cicloTotais(),
                 parametros.tempoInspirar(),
                 parametros.tempoExpirar(),
-                parametros.tempoPausa(),
-                this.narrador);
+                parametros.tempoPausa());
         gerenciarSessao.prepararComponentes();
     }
 
@@ -49,18 +48,11 @@ public class RespiracaoConfig {
         Intent intent = activity.getIntent();
         Respirar tipo = (Respirar) intent.getParcelableExtra(Constantes.EXTRA_TIPO_RESPIRACAO);
         return new ParametrosRespiracao(tipo);
-//        return new ParametrosRespiracao(
-//                intent.getStringExtra(Constantes.EXTRA_NOME_EXERCICIO),
-//                intent.getLongExtra(Constantes.EXTRA_TEMPO_INSPIRAR, 4),
-//                intent.getLongExtra(Constantes.EXTRA_TEMPO_EXPIRAR, 4),
-//                intent.getLongExtra(Constantes.EXTRA_NUM_CICLOS, 4),
-//                intent.getLongExtra(Constantes.EXTRA_TEMPO_PAUSA, 0));
     }
 
     private void configurarToolbar(String nomeExecicio) {
         binding.toolbarRetornar.setTitle(nomeExecicio);
-        binding.toolbarRetornar.setNavigationOnClickListener(v -> activity.finish());
-    }
+   }
 
     private void configurarBtnIniciar() {
         binding.btnIniciar.setOnClickListener(v -> {

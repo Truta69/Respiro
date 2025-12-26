@@ -31,7 +31,7 @@ public class GerenciadorContadorSessao {
         };
     }
 
-    private String formatarTempo(long millisRestantes) {
+    public String formatarTempo(long millisRestantes) {
         long segundosRestantes = millisRestantes / 1000;
         long minutos = segundosRestantes / 60;
         long segundos = segundosRestantes % 60;
@@ -43,9 +43,10 @@ public class GerenciadorContadorSessao {
      * listener agora desabilita o botao
      */
     public void iniciar() {
-        if (contadorRegressivo != null)
-            listener.onSessaoStart();
-            contadorRegressivo.start();
+        cancelar();
+        prepararContador();
+        listener.onSessaoStart();
+        contadorRegressivo.start();
     }
 
     public void cancelar() {

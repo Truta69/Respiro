@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mazanca.newrespiracao.controller.TipoRespiracaoController;
 import com.mazanca.newrespiracao.databinding.ActivityEscolherRespiracaoBinding;
 import com.mazanca.newrespiracao.model.MiniPauser;
-import com.mazanca.newrespiracao.model.RelaxamentoProfundo;
+import com.mazanca.newrespiracao.model.RelaxamentoBasica;
 import com.mazanca.newrespiracao.model.RespiracaoConcentracao;
 import com.mazanca.newrespiracao.model.RespiracaoEnergia;
+import com.mazanca.newrespiracao.model.RespiracaoProfunda;
 
 /**
  * lembrar de separar a chmamda de em duas config
@@ -25,16 +26,13 @@ public class EscolherCardsConfig {
 
     public void configurarTelaCards() {
         configurarCards();
-        configurarToolbar();
     }
 
     private void configurarCards() {
-        new TipoRespiracaoController(activity, binding.cardRelax, new RelaxamentoProfundo());
+        new TipoRespiracaoController(activity, binding.cardRelax, new RelaxamentoBasica());
         new TipoRespiracaoController(activity, binding.cardBox, new RespiracaoConcentracao());
         new TipoRespiracaoController(activity, binding.cardEnergia, new RespiracaoEnergia());
         new TipoRespiracaoController(activity, binding.miniPausa, new MiniPauser());
-    }
-    private void configurarToolbar(){
-        binding.toolbarRespiracao.setNavigationOnClickListener(v -> activity.finish());
+        new TipoRespiracaoController(activity, binding.cardRespProfundo, new RespiracaoProfunda());
     }
 }

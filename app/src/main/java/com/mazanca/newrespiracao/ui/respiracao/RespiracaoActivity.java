@@ -19,22 +19,26 @@ public class RespiracaoActivity extends AppCompatActivity {
         binding = GerarTelaUtil.configurarTela(this, ActivityRespiracaoBinding::inflate);
         this.config = new RespiracaoConfig(this, binding);//criacao no oncreate
         inicializaConfiguracao();
+        configurarCliqueToobar();
     }
 
     private void inicializaConfiguracao() {
         this.config.configurarTelaRespiracao();//apenas chma o metodo
+    }
+    private void configurarCliqueToobar(){
+       GerarTelaUtil.configurarToolbarVoltar(this, binding.toolbarRetornar);//ver escolherActivity
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         binding = null;
+        config=null;
     }
-
+    //ver outras telas de transicao
     @SuppressWarnings("deprecation")
     @Override
-    public void finish() {
-        super.finish();
-        TransicaoDeTelas.fecharActivity(this,R.anim.slide_in_left, R.anim.slide_out_right);
+    public void onBackPressed() {
+        TransicaoDeTelas.fecharActivity(this, R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

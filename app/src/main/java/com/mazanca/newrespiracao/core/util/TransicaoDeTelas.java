@@ -18,14 +18,13 @@ public class TransicaoDeTelas {
 
     /**
      * Para sair da activity nao usa intent
-     *
      * @param contexto
      * @param animSaida
      * @param animEntrada
      */
     @SuppressWarnings("deprecation")
-    public static void fecharActivity(Activity atividade, int animSaida, int animEntrada) {
+    public static void fecharActivity(Activity atividade, int animEntrada, int animSaida) {
         atividade.finish();
-        atividade.overridePendingTransition(animSaida,animEntrada);
+        atividade.overridePendingTransition(animEntrada,animSaida);
     }
 }

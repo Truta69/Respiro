@@ -19,10 +19,16 @@ public class EscolherRespiracaoActivity extends AppCompatActivity {
         binding = GerarTelaUtil.configurarTela(this, ActivityEscolherRespiracaoBinding::inflate);
         config = new EscolherCardsConfig(this, binding);
         configurar();
+        configurarCliqueToobar();
     }
 
     private void configurar() {
         config.configurarTelaCards();
+    }
+
+    private void configurarCliqueToobar() {
+        //binding.toolbarRespiracao.setNavigationOnClickListener(v -> onBackPressed());
+        GerarTelaUtil.configurarToolbarVoltar(this, binding.toolbarRespiracao);
     }
 
     @Override
@@ -34,8 +40,7 @@ public class EscolherRespiracaoActivity extends AppCompatActivity {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void finish() {
-        super.finish();
-        TransicaoDeTelas.fecharActivity(this,R.anim.slide_in_left, R.anim.slide_out_right);
+    public void onBackPressed() {
+        TransicaoDeTelas.fecharActivity(this, R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

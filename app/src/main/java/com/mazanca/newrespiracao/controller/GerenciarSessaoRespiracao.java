@@ -11,6 +11,7 @@ import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.core.timer.ContadorSessaoListener;
 import com.mazanca.newrespiracao.core.timer.GerenciadorContadorSessao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
+import com.mazanca.newrespiracao.domain.session.EstadoDaSessao;
 
 public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     private ActivityRespiracaoBinding binding;
@@ -23,36 +24,38 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     private GerenciadorContadorSessao contador;
 
     private long cicloAtual;
-    private boolean exercicioEmAndamento = false;
+    private EstadoDaSessao estado = EstadoDaSessao.PARADA;//ENUM
     private NarradorRespiracao narrador;
+    private long duracaoTotalSessao;
 
     public GerenciarSessaoRespiracao(
             ActivityRespiracaoBinding binding,
             long ciclosTotais,
             long tempoInspirar,
             long tempoExpirar,
-            long tempoPausa,
-            NarradorRespiracao narrador) {
+            long tempoPausa
+    ) {
         this.binding = binding;
         this.ciclosTotais = ciclosTotais;
         this.tempoInspirar = tempoInspirar;
         this.tempoExpirar = tempoExpirar;
         this.tempoPausa = tempoPausa;
-        this.narrador = narrador;
     }
 
     public void prepararComponentes() {
         prepararAnimacao();
         long duracaoTotal = (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
-        prepararContador(duracaoTotal);
-   }
-    private void setBotaoIniciarHabilitado(boolean habilitado){
+        this.contador = new GerenciadorContadorSessao(duracaoTotal, this);
+    }
+
+    private void setBotaoIniciarHabilitado(boolean habilitado) {
         binding.btnIniciar.setEnabled(habilitado);
     }
 
     public void iniciar() {
-        if (exercicioEmAndamento) return;
-        exercicioEmAndamento = true;
+        if (estado == EstadoDaSessao.EM_ANDAMENTO) return;
+        estado = EstadoDaSessao.EM_ANDAMENTO;
+        binding.circuloAnimado.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         //narrador.falar(binding.txtInstrucao.getText().toString());
         contador.iniciar();
         animadorBalao.start();
@@ -66,21 +69,18 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
                 binding.txtInstrucao,
                 tempoInspirar,
                 tempoExpirar,
-                tempoPausa,
-                narrador
+                tempoPausa
         );
         AnimatorListenerAdapter listenerCiclo = new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                if (!exercicioEmAndamento) {
+                if (estado == EstadoDaSessao.PARADA) {
                     return;
                 }
                 cicloAtual++;
                 if (cicloAtual < ciclosTotais) {
                     animadorBalao.start();
-                } else {
-                    finalizarSessao();
                 }
             }
         };
@@ -88,10 +88,13 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     }
 
     public void resetarParaEstadoInicial() {
-        exercicioEmAndamento = false;
+        estado = EstadoDaSessao.PARADA;
         cicloAtual = 0;
-        if (contador != null)
+        if (contador != null) {
             contador.cancelar();
+            long duracaoTotal = (tempoInspirar + tempoExpirar + tempoPausa) * ciclosTotais;
+            this.contador = new GerenciadorContadorSessao(duracaoTotal, this);
+        }
         if (animadorBalao != null && animadorBalao.isStarted())
             animadorBalao.cancel();
         binding.toolbarRetornar.setSubtitle(null);
@@ -111,7 +114,7 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
 
     @Override
     public void onFinish() {
-        if (exercicioEmAndamento) {
+        if (estado == EstadoDaSessao.EM_ANDAMENTO) {
             finalizarSessao();
         }
     }
@@ -137,8 +140,14 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     }
 
     private void finalizarSessao() {
+        estado=EstadoDaSessao.PARADA;
+        if(animadorBalao!=null){
+            animadorBalao.cancel();
+        }
         binding.txtInstrucao.setText(R.string.sessao_finalizada);
-        narrador.falar(binding.txtInstrucao.getText().toString());
+//        if(narrador!=null){
+//            narrador.falar(binding.txtInstrucao.getText().toString());
+//        }
         resetarParaEstadoInicial();
     }
 }

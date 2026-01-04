@@ -1,7 +1,6 @@
 package com.mazanca.newrespiracao.ui.respiracao;
 
 import android.content.Intent;
-import android.os.Parcelable;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -59,5 +58,14 @@ public class RespiracaoConfig {
             if (gerenciarSessao != null)
                 gerenciarSessao.iniciar();
         });
+    }
+    //quem cria recursoa libera recusos...para chmara em acitivty
+    public void liberar(){
+        if(gerenciarSessao!=null){
+            gerenciarSessao.liberarRecursos();
+        }
+        if(narrador!=null){
+            narrador.parar();
+        }
     }
 }

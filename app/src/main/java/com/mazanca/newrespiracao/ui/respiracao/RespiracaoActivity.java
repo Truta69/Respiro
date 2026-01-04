@@ -25,16 +25,21 @@ public class RespiracaoActivity extends AppCompatActivity {
     private void inicializaConfiguracao() {
         this.config.configurarTelaRespiracao();//apenas chma o metodo
     }
-    private void configurarCliqueToobar(){
-       GerarTelaUtil.configurarToolbarVoltar(this, binding.toolbarRetornar);//ver escolherActivity
+
+    private void configurarCliqueToobar() {
+        GerarTelaUtil.configurarToolbarVoltar(this, binding.toolbarRetornar);//ver escolherActivity
     }
 
     @Override
     protected void onDestroy() {
+        if(config!=null){
+            config.liberar();
+        }
         super.onDestroy();
         binding = null;
-        config=null;
+        config = null;
     }
+
     //ver outras telas de transicao
     @SuppressWarnings("deprecation")
     @Override

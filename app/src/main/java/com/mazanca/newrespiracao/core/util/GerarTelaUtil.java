@@ -47,6 +47,7 @@ public class GerarTelaUtil {
             insetsController.setAppearanceLightStatusBars(true);
             insetsController.setAppearanceLightNavigationBars(true);
         }
+
     }
 
     //centralizar o metodo que estava duplicado .precisa enviar os parametros

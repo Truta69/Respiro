@@ -18,12 +18,15 @@ public class GerenciarCicloDeVidaRespiracao implements DefaultLifecycleObserver 
 
     /**
      * @param ownerresetar se a activity sair da tela
-     * por ex, tel tocar...
+     *                     por ex, tel tocar...mas esta duplicado..entao colocar
+     *                     em um metodo so
      */
-    @Override
-    public void onStop(@NonNull LifecycleOwner owner) {
+    private void pararTudo(boolean liberar) {
         if (gerenciarSessao != null) {
             gerenciarSessao.resetarParaEstadoInicial();
+            if (liberar) {
+                gerenciarSessao.liberarRecursos();
+            }
         }
         if (narrador != null) {
             narrador.parar();
@@ -31,15 +34,14 @@ public class GerenciarCicloDeVidaRespiracao implements DefaultLifecycleObserver 
     }
 
     @Override
+    public void onStop(@NonNull LifecycleOwner owner) {
+        pararTudo(false);
+    }
+
+    @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
-        if (gerenciarSessao != null) {
-            gerenciarSessao.resetarParaEstadoInicial();
-            gerenciarSessao.liberarRecursos();
-        }
-        if (narrador != null) {
-            narrador.parar();
-        }
-        gerenciarSessao=null;
-        narrador=null;
+        pararTudo(true);
+        gerenciarSessao = null;
+        narrador = null;
     }
 }

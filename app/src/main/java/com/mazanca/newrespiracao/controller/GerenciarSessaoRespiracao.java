@@ -49,14 +49,15 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     }
 
     private void setBotaoIniciarHabilitado(boolean habilitado) {
-        binding.btnIniciar.setEnabled(habilitado);
+        if (binding != null)
+            binding.btnIniciar.setEnabled(habilitado);
     }
 
     public void iniciar() {
-        if (estado == EstadoDaSessao.EM_ANDAMENTO) return;
+        if (estado == EstadoDaSessao.EM_ANDAMENTO || binding == null) return;
         estado = EstadoDaSessao.EM_ANDAMENTO;
         binding.circuloAnimado.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-        //narrador.falar(binding.txtInstrucao.getText().toString());
+
         contador.iniciar();
         animadorBalao.start();
         binding.txtInstrucao.setVisibility(View.VISIBLE);
@@ -97,10 +98,12 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         }
         if (animadorBalao != null && animadorBalao.isStarted())
             animadorBalao.cancel();
-        binding.toolbarRetornar.setSubtitle(null);
-        binding.circuloAnimado.animate().cancel();
-        binding.circuloAnimado.setScaleX(1f);
-        binding.circuloAnimado.setScaleY(1f);
+        if (binding != null) {
+            binding.toolbarRetornar.setSubtitle(null);
+            binding.circuloAnimado.animate().cancel();
+            binding.circuloAnimado.setScaleX(1f);
+            binding.circuloAnimado.setScaleY(1f);
+        }
     }
 
     private void prepararContador(long duracao) {
@@ -109,7 +112,8 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
 
     @Override
     public void onTick(String tempoFormatado) {
-        binding.toolbarRetornar.setSubtitle(tempoFormatado);
+        if (binding != null)
+            binding.toolbarRetornar.setSubtitle(tempoFormatado);
     }
 
     @Override
@@ -133,21 +137,23 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
         if (animadorBalao != null) {
             animadorBalao.removeAllListeners();
             animadorBalao.cancel();
+            animadorBalao = null;
         }
         if (contador != null) {
             contador.cancelar();
+            contador = null;
         }
+        this.binding = null;
     }
 
     private void finalizarSessao() {
-        estado=EstadoDaSessao.PARADA;
-        if(animadorBalao!=null){
+        estado = EstadoDaSessao.PARADA;
+        if (animadorBalao != null) {
             animadorBalao.cancel();
         }
-        binding.txtInstrucao.setText(R.string.sessao_finalizada);
-//        if(narrador!=null){
-//            narrador.falar(binding.txtInstrucao.getText().toString());
-//        }
-        resetarParaEstadoInicial();
+        if (binding != null) {
+            binding.txtInstrucao.setText(R.string.sessao_finalizada);
+            resetarParaEstadoInicial();
+        }
     }
 }

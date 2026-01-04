@@ -36,6 +36,9 @@ android {
         viewBinding = true
     }
 }
+kotlin{
+    jvmToolchain(17)
+}
 tasks.withType<JavaCompile>().configureEach {
     options.compilerArgs.add("-Xlint:deprecation")
 }
@@ -43,9 +46,9 @@ tasks.withType<JavaCompile>().configureEach {
 
 dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation(libs.material)
     implementation(libs.appcompat)
-    implementation("androidx.activity:activity:1.9.0")
+    implementation(libs.activity)
     implementation(libs.constraintlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

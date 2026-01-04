@@ -7,6 +7,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 
 public class GerenciarCicloVidaAnimacao implements DefaultLifecycleObserver {
+    //private WeakReference<TextView> textViewRef; ver
     private GerenciarTextoAnimacao textAnimator;
     private TextView textView;
 
@@ -30,6 +31,10 @@ public class GerenciarCicloVidaAnimacao implements DefaultLifecycleObserver {
 
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
-        textAnimator.liberarRecursos();
+        if (textAnimator != null) {
+            textAnimator.liberarRecursos();
+            textAnimator = null;
+        }
+        textView = null;
     }
 }

@@ -16,8 +16,8 @@ import com.mazanca.newrespiracao.model.RespiracaoProfunda;
  * EscolherCardsNavConfig → ações de clique
  */
 public class EscolherCardsConfig {
-    private AppCompatActivity activity;
-    private ActivityEscolherRespiracaoBinding binding;
+    private final AppCompatActivity activity;
+    private final ActivityEscolherRespiracaoBinding binding;
 
     public EscolherCardsConfig(AppCompatActivity activity, ActivityEscolherRespiracaoBinding binding) {
         this.activity = activity;

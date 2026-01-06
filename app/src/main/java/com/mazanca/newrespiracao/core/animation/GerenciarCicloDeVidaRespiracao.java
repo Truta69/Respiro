@@ -17,9 +17,9 @@ public class GerenciarCicloDeVidaRespiracao implements DefaultLifecycleObserver 
     }
 
     /**
-     * @param ownerresetar se a activity sair da tela
-     *                     por ex, tel tocar...mas esta duplicado..entao colocar
-     *                     em um metodo so
+     *  se a activity sair da tela
+     *  por ex, tel tocar...mas esta duplicado..entao colocar
+     *  em um metodo so
      */
     private void pararTudo(boolean liberar) {
         if (gerenciarSessao != null) {

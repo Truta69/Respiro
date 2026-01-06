@@ -11,15 +11,15 @@ import com.mazanca.newrespiracao.databinding.ActivityPrincipalBinding;
 import com.mazanca.newrespiracao.ui.escolherCards.EscolherRespiracaoActivity;
 
 public class PrincipalConfig {
-    private Activity activity;
-    private ActivityPrincipalBinding binding;
+    private final Activity activity;
+    private final ActivityPrincipalBinding binding;
 
     public PrincipalConfig(AppCompatActivity activity, ActivityPrincipalBinding binding) {
         this.activity = activity;
         this.binding = binding;
     }
 
-    @SuppressWarnings("deprecation")
+
     private void configurarNavegacao() {
         binding.cardTop.setOnClickListener(v -> {
             Intent intent = new Intent(activity, EscolherRespiracaoActivity.class);

@@ -2,6 +2,7 @@ package com.mazanca.newrespiracao.ui.respiracao;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
@@ -20,6 +21,7 @@ public class RespiracaoActivity extends AppCompatActivity {
         this.config = new RespiracaoConfig(this, binding);//criacao no oncreate
         inicializaConfiguracao();
         configurarCliqueToobar();
+        voltarTelas();
     }
 
     private void inicializaConfiguracao() {
@@ -32,7 +34,7 @@ public class RespiracaoActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if(config!=null){
+        if (config != null) {
             config.liberar();
         }
         super.onDestroy();
@@ -40,10 +42,19 @@ public class RespiracaoActivity extends AppCompatActivity {
         config = null;
     }
 
-    //ver outras telas de transicao
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onBackPressed() {
-        TransicaoDeTelas.fecharActivity(this, R.anim.slide_in_left, R.anim.slide_out_right);
+    /**
+     * Ver a possibiliade de usar esse metodo em uma classe e so fazer a
+     * achamada aqui e nas outras telas de transicao..
+     */
+    private void voltarTelas() {
+        OnBackPressedCallback backCallback;
+        backCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                TransicaoDeTelas.fecharActivity(RespiracaoActivity.this,
+                        R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,backCallback);
     }
 }

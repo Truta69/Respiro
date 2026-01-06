@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.core.animation.AnimarBalao;
-import com.mazanca.newrespiracao.core.audio.NarradorRespiracao;
 import com.mazanca.newrespiracao.core.timer.ContadorSessaoListener;
 import com.mazanca.newrespiracao.core.timer.GerenciadorContadorSessao;
 import com.mazanca.newrespiracao.databinding.ActivityRespiracaoBinding;
@@ -15,18 +14,16 @@ import com.mazanca.newrespiracao.domain.session.EstadoDaSessao;
 
 public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
     private ActivityRespiracaoBinding binding;
-    private long ciclosTotais;
-    private long tempoInspirar;
-    private long tempoExpirar;
-    private long tempoPausa;
+    private final long ciclosTotais;
+    private final long tempoInspirar;
+    private final long tempoExpirar;
+    private final long tempoPausa;
 
     private AnimatorSet animadorBalao;
     private GerenciadorContadorSessao contador;
 
     private long cicloAtual;
     private EstadoDaSessao estado = EstadoDaSessao.PARADA;//ENUM
-    private NarradorRespiracao narrador;
-    private long duracaoTotalSessao;
 
     public GerenciarSessaoRespiracao(
             ActivityRespiracaoBinding binding,
@@ -104,10 +101,6 @@ public class GerenciarSessaoRespiracao implements ContadorSessaoListener {
             binding.circuloAnimado.setScaleX(1f);
             binding.circuloAnimado.setScaleY(1f);
         }
-    }
-
-    private void prepararContador(long duracao) {
-        this.contador = new GerenciadorContadorSessao(duracao, this);
     }
 
     @Override

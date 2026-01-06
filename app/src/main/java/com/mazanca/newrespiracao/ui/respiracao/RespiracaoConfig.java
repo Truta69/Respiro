@@ -15,8 +15,8 @@ import com.mazanca.newrespiracao.model.Respirar;
 public class RespiracaoConfig {
     private final AppCompatActivity activity;//garantir que camos nao mudam
     private final ActivityRespiracaoBinding binding;
-    private GerenciarSessaoRespiracao gerenciarSessao;
-    private NarradorRespiracao narrador;
+    private  GerenciarSessaoRespiracao gerenciarSessao;
+    private  NarradorRespiracao narrador;
 
     public RespiracaoConfig(AppCompatActivity activity, ActivityRespiracaoBinding binding) {
         this.activity = activity;
@@ -24,18 +24,19 @@ public class RespiracaoConfig {
     }
 
     public void configurarTelaRespiracao() {
-        ParametrosRespiracao parametros = obterParametros();
+        ParametrosRespiracao parametrosRespiracao = obterParametros();
         this.narrador = new NarradorRespiracao(activity);
-        iniciarSessao(parametros);
-        configurarToolbar(parametros.nomeExercicio());
-        configurarBtnIniciar();
-        activity.getLifecycle().addObserver(new GerenciarCicloDeVidaRespiracao(gerenciarSessao, narrador));
+        iniciarSessao(parametrosRespiracao);
+        configurarToolbar(parametrosRespiracao.nomeExercicio());
+        configurarBotaoIniciar();
+        GerenciarCicloDeVidaRespiracao observer=new GerenciarCicloDeVidaRespiracao(gerenciarSessao,narrador);
+        activity.getLifecycle().addObserver(observer);
     }
 
     private void iniciarSessao(ParametrosRespiracao parametros) {
         this.gerenciarSessao = new GerenciarSessaoRespiracao(
                 binding,
-                parametros.cicloTotais(),
+                parametros.numeroDeCiclos(),
                 parametros.tempoInspirar(),
                 parametros.tempoExpirar(),
                 parametros.tempoPausa());
@@ -53,7 +54,7 @@ public class RespiracaoConfig {
         binding.toolbarRetornar.setTitle(nomeExecicio);
    }
 
-    private void configurarBtnIniciar() {
+    private void configurarBotaoIniciar() {
         binding.btnIniciar.setOnClickListener(v -> {
             if (gerenciarSessao != null)
                 gerenciarSessao.iniciar();

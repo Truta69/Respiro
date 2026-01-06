@@ -2,6 +2,7 @@ package com.mazanca.newrespiracao.ui.escolherCards;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazanca.newrespiracao.R;
@@ -20,6 +21,7 @@ public class EscolherRespiracaoActivity extends AppCompatActivity {
         config = new EscolherCardsConfig(this, binding);
         configurar();
         configurarCliqueToobar();
+        voltarTelas();
     }
 
     private void configurar() {
@@ -38,9 +40,15 @@ public class EscolherRespiracaoActivity extends AppCompatActivity {
         config = null;
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onBackPressed() {
-        TransicaoDeTelas.fecharActivity(this, R.anim.slide_in_left, R.anim.slide_out_right);
+    private void voltarTelas() {
+        OnBackPressedCallback backCallback;
+        backCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                TransicaoDeTelas.fecharActivity(EscolherRespiracaoActivity.this,
+                        R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(backCallback);
     }
 }

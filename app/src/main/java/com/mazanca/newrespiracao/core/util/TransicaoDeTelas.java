@@ -18,9 +18,9 @@ public class TransicaoDeTelas {
 
     /**
      * Para sair da activity nao usa intent
-     * @param contexto
-     * @param animSaida
-     * @param animEntrada
+     * @param atividade essa activity
+     * @param animEntrada animacao de entrada
+     * @param animSaida animacao de saida
      */
     @SuppressWarnings("deprecation")
     public static void fecharActivity(Activity atividade, int animEntrada, int animSaida) {

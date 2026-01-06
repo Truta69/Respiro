@@ -4,12 +4,14 @@ package com.mazanca.newrespiracao.model;
  * Substitui a classe tradicional, gerando automaticamente construtor,
  * métodos de acesso (nomeExercicio(), tempoInspirar(), etc.),
  * equals(), hashCode() e toString().
+ * DEpois quando chama o costurtor ele associa pela posicao e tipo
+ * o record gera construtor padrao e esse construtor auxiliar faz um mapeamento..
  */
 public record ParametrosRespiracao(
         String nomeExercicio,
         long tempoInspirar,
         long tempoExpirar,
-        long cicloTotais,
+        long numeroDeCiclos,
         long tempoPausa
 ) {
     public ParametrosRespiracao(Respirar r){

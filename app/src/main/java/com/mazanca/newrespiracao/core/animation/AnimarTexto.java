@@ -5,12 +5,14 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 public class AnimarTexto {
 
     private static final float SCALAX_MAX = 2.3F;
     private static final float SCALAY_MAX = 1.5F;
 
-    public static AnimatorSet iniciarAnimacaoCumprimento(View texto) {
+    public static AnimatorSet iniciarAnimacaoCumprimento(@NonNull View texto) {
         ObjectAnimator animacaoX = ObjectAnimator.ofFloat(texto, "scaleX", 1F, SCALAX_MAX);
         ObjectAnimator animacaoY = ObjectAnimator.ofFloat(texto, "scaleY", 1F, SCALAY_MAX);
         configurarPulso(animacaoX);

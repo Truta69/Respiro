@@ -1,6 +1,5 @@
 package com.mazanca.newrespiracao.controller;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
@@ -9,12 +8,11 @@ import android.view.View;
 import com.mazanca.newrespiracao.R;
 import com.mazanca.newrespiracao.core.util.Constantes;
 import com.mazanca.newrespiracao.core.util.TransicaoDeTelas;
-import com.mazanca.newrespiracao.model.Respirar;
 import com.mazanca.newrespiracao.ui.respiracao.RespiracaoActivity;
 
 public class TipoRespiracaoController {
-    private Context contexto;
-    private Parcelable tipoRespiracao;
+    private final Context contexto;
+    private final Parcelable tipoRespiracao;
 
     public TipoRespiracaoController(Context contexto, View cardView, Parcelable tipoRespiracao) {
         this.contexto = contexto;
@@ -33,7 +31,6 @@ public class TipoRespiracaoController {
     }
     /**
      * passa o objeto ,nao mais campo por campo
-     * @return
      */
     private Intent criarIntentRespiracao() {
         var intent = new Intent(contexto, RespiracaoActivity.class);
